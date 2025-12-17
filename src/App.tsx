@@ -3,15 +3,15 @@ import { useMemo, useState } from 'react';
 const services = [
   {
     title: 'Hidden doors & entries',
-    copy: 'Bookcase doors, concealed passages, and secure reveals that look original to the home.',
+    copy: 'Bookcase doors, concealed passages, and secure reveals trimmed to match the room.',
   },
   {
     title: 'Built-ins & millwork',
-    copy: 'Wall-to-wall cabinetry, mudrooms, mantels, and trim packages tailored to your footprint.',
+    copy: 'Wall-to-wall cabinetry, mudrooms, mantels, and trim packages built to your footprint.',
   },
   {
     title: 'Renovations & finish carpentry',
-    copy: 'Precision framing, paneling, and finish details that elevate everyday spaces.',
+    copy: 'Precision framing, paneling, and finish details that tie rooms together.',
   },
 ];
 
@@ -19,12 +19,12 @@ const steps = [
   {
     label: '01',
     title: 'Discover',
-    copy: 'We walk the space, note constraints, and map feasibility so the vision is buildable.',
+    copy: 'We walk the space, check structure, and confirm the idea is buildable.',
   },
   {
     label: '02',
     title: 'Design',
-    copy: 'Renderings, materials, and joinery decisions locked before a saw ever starts.',
+    copy: 'Renderings, materials, and joinery decisions locked before the first cut.',
   },
   {
     label: '03',
@@ -34,23 +34,23 @@ const steps = [
 ];
 
 const highlights = [
-  { title: 'Precision is in our DNA', copy: 'Veteran-owned team blending engineering rigor with heritage carpentry.' },
-  { title: 'Oak-scented sophistication', copy: 'Warm, confident tone with meticulous fits, reveals, and grain matching.' },
-  { title: 'Protected investment', copy: 'Transparent scope, clear allowances, and craftsmanship built to last.' },
+  { title: 'Precision is in our DNA', copy: 'Veteran-owned shop applying engineering discipline to every joint and reveal.' },
+  { title: 'Measured work. Lasting results.', copy: 'Tight fits, matched grain, and hardware set with intent.' },
+  { title: 'Protected investment', copy: 'Clear scope, documented allowances, and work built to hold up.' },
 ];
 
 const faqs = [
   {
     q: 'Where do you work?',
-    a: 'We serve Pennsylvania and nearby markets for specialty installs. Travel projects are considered case-by-case.',
+    a: 'Pennsylvania and nearby markets for specialty installs. Travel projects considered case-by-case.',
   },
   {
     q: 'Do you design and build?',
-    a: 'Yes. We handle concept through install, collaborating with your architect or designer when provided.',
+    a: 'Yes. Concept through install, collaborating with your architect or designer when provided.',
   },
   {
     q: 'What makes a great first call?',
-    a: 'Share goals, dimensions, inspiration photos, and timeline. We will bring options, samples, and a crisp plan.',
+    a: 'Share goals, dimensions, inspiration photos, and timeline. We will return options, samples, and a clear plan.',
   },
 ];
 
@@ -149,7 +149,7 @@ export default function App() {
             <a href="#work">Work</a>
             <a href="#process">Process</a>
             <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
-              Book a consult
+              Request a consult
             </a>
           </nav>
         </header>
@@ -159,10 +159,10 @@ export default function App() {
             <div className="space-y-8">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Precision is in our DNA</p>
               <h1 className="font-display text-4xl font-semibold leading-tight text-canvas sm:text-5xl lg:text-6xl">
-                Custom carpentry that feels original to your home.
+                Custom carpentry that belongs in your home.
               </h1>
               <p className="max-w-2xl text-lg text-steel">
-                Veteran-owned craftsmanship delivering secret doors, built-ins, and finish trim with oak-scented sophistication. We engineer the details so every reveal feels effortless.
+                Veteran-owned shop building hidden doors, built-ins, and finish trim. We engineer fits and reveals so they feel original.
               </p>
               <div className="flex flex-wrap gap-3 text-sm text-steel">
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Hidden bookcase doors</span>
@@ -175,7 +175,7 @@ export default function App() {
                   href="#contact"
                   className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5"
                 >
-                  Schedule a walkthrough
+                  Request a walkthrough
                 </a>
                 <a href="#work" className="inline-flex items-center text-sm font-semibold text-canvas">
                   See recent builds →
@@ -227,7 +227,7 @@ export default function App() {
             <SectionHeading
               eyebrow="Offerings"
               title="Built to fit. Engineered to last."
-              copy="We pair precision joinery with a warm, confident tone - always aligned to your home, not a catalog."
+              copy="Precision joinery aligned to your home, not a catalog."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {services.map((service) => (
@@ -247,7 +247,7 @@ export default function App() {
             <SectionHeading
               eyebrow="Selected work"
               title="Craft that feels custom"
-              copy="Every project respects the existing architecture - grain matched, trim aligned, and hardware chosen for the way you live."
+              copy="Every project respects the existing architecture - grain matched, trim aligned, hardware chosen for how you live."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {projects.map((project) => (
@@ -268,6 +268,7 @@ export default function App() {
               eyebrow="Approach"
               title="A steady, intentional process"
               copy="Clean job sites, clear updates, and craftsmanship you can feel when you open the door."
+              copy="Clean job sites, clear updates, and work you can feel every time you open the door."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {steps.map((step) => (
@@ -289,12 +290,12 @@ export default function App() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Start a project</p>
                 <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Tell us about your space</h2>
                 <p className="text-sm text-steel">
-                  We reply within one business day. This Netlify-powered form routes straight to the shop. Share the room, dimensions, timing, and any inspiration - then we will bring the plan.
+                  We reply within one business day. This form routes straight to the shop. Share the room, dimensions, timing, and any inspiration - we will return with a plan.
                 </p>
                 <ul className="grid gap-3 text-sm text-steel">
                   <li className="flex items-center gap-2">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
-                    Hidden doors, built-ins, trim, and bespoke millwork
+                    Hidden doors, built-ins, trim, and custom millwork
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
