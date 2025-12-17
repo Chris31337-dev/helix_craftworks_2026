@@ -102,19 +102,25 @@ export default function App() {
       body.append(key, value.toString());
     });
 
+    // Netlify returns 303 redirects for standard form posts. Setting Accept to application/json
+    // keeps it AJAX-friendly and lets us treat 2xx/3xx as success.
+
     try {
       const response = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Accept: 'application/json',
+        },
         body: body.toString(),
       });
 
-      if (response.ok) {
+      if (response.ok || (response.status >= 300 && response.status < 400)) {
         setStatus('success');
         form.reset();
       } else {
         setStatus('error');
-        setErrorMessage('Something went wrong. Please try again or email chris@helixcraftworks.com.');
+        setErrorMessage(`Something went wrong. Status ${response.status}. Please try again or email chris@helixcraftworks.com.`);
       }
     } catch (error) {
       console.error(error);
@@ -306,6 +312,7 @@ export default function App() {
                 method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
+                action="/"
                 onSubmit={handleSubmit}
                 className="space-y-4 rounded-2xl border border-canvas/10 bg-charcoal/80 p-6 shadow-card"
               >
