@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
@@ -7,16 +7,34 @@ const HEADER_LOGO_SRC = '/favicon/android-chrome-192x192.png';
 
 const services = [
   {
-    title: 'Renovations & remodels',
-    copy: 'Full-scope residential projects with planning, permits, and trades managed end to end.',
+    title: 'Renovations & Remodels',
+    copy: 'Full-scope residential renovations managed end to end, from early planning and permits through final inspection and close-out.',
+    href: '/renovations',
   },
   {
-    title: 'General contracting',
-    copy: 'Scheduling, sequencing, and coordination to keep scope, budget, and finish quality on track.',
+    title: 'General Contracting',
+    copy: 'Scheduling, sequencing, and trade coordination handled directly to keep scope, budget, and finish quality aligned throughout the build.',
+    href: '/general-contracting',
   },
   {
-    title: 'Finish carpentry & millwork',
-    copy: 'Trim, paneling, built-ins, and specialty elements that close projects with tight fit and alignment.',
+    title: 'Project Planning & Sequencing',
+    copy: 'Layouts, materials, and construction order defined before work begins to reduce delays, conflicts, and mid-project changes.',
+    href: '#process',
+  },
+  {
+    title: 'Finish Carpentry & Millwork',
+    copy: 'Trim, paneling, built-ins, and architectural details executed with tight tolerances and careful alignment to the existing home.',
+    href: '/finish-carpentry-millwork',
+  },
+  {
+    title: 'Specialty Details & Custom Elements',
+    copy: 'Complex features such as concealed storage, integrated millwork, and custom transitions handled as part of a larger renovation scope.',
+    href: '#specialty-work',
+  },
+  {
+    title: 'Repairs, Upgrades & Phased Work',
+    copy: 'Targeted improvements and phased renovations planned to integrate cleanly with future work and long-term goals.',
+    href: '/repairs-upgrades',
   },
 ];
 
@@ -157,11 +175,122 @@ function SectionHeading({ title, eyebrow, copy }: Readonly<{ title: string; eyeb
   );
 }
 
+function Shell({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <div className="min-h-screen bg-charcoal text-canvas">
+      <div className="absolute inset-0 -z-10 bg-radial-spot" aria-hidden />
+      <div className="absolute inset-0 -z-20 opacity-25 bg-grid-light bg-[length:140px_140px]" aria-hidden />
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pb-16 pt-10 sm:px-10 sm:pt-14 lg:px-14">{children}</div>
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 shadow-glow">
+          <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
+        </div>
+        <div>
+          <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
+          <p className="text-xs text-steel">Custom Renovations. Visible craftsmanship. Built by {BRAND_MARK}.</p>
+        </div>
+      </div>
+      <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
+        <a href="/#services">Services</a>
+        <a href="/#process">Process</a>
+        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
+          Request a consult
+        </a>
+      </nav>
+    </header>
+  );
+}
+
+function Footer({ year }: Readonly<{ year: number }>) {
+  return (
+    <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-2 text-canvas">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
+          <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+        </div>
+        <span>{BRAND_MARK}</span>
+      </div>
+      <div className="flex flex-wrap gap-4">
+        <a href="/#services">Services</a>
+        <a href="/#contact">Contact</a>
+        <span className="text-steel">© {year}</span>
+      </div>
+    </footer>
+  );
+}
+
+const standalonePages = {
+  '/renovations': {
+    title: 'Renovations & Remodels',
+    intro: 'Full-scope residential renovations managed end to end, from early planning and permits through final inspection and close-out.',
+    sections: [
+      {
+        heading: 'What we manage',
+        items: ['Planning, permits, and inspections', 'Sequenced trades with documented scope', 'Site protection, dust control, and finish alignment'],
+      },
+      {
+        heading: 'How we deliver',
+        items: ['Clear schedule and milestone tracking', 'Material approvals before demo', 'Daily oversight until handoff'],
+      },
+    ],
+  },
+  '/general-contracting': {
+    title: 'General Contracting',
+    intro: 'Scheduling, sequencing, and trade coordination handled directly to keep scope, budget, and finish quality aligned throughout the build.',
+    sections: [
+      {
+        heading: 'Controls in place',
+        items: ['Single point of contact from start to finish', 'Approved scopes before mobilization', 'Weekly updates during active work'],
+      },
+      {
+        heading: 'Oversight',
+        items: ['On-site checks during critical phases', 'Issue resolution before it impacts schedule', 'Close-out with documented punch completion'],
+      },
+    ],
+  },
+  '/finish-carpentry-millwork': {
+    title: 'Finish Carpentry & Millwork',
+    intro: 'Trim, paneling, built-ins, and architectural details executed with tight tolerances and alignment to the existing home.',
+    sections: [
+      {
+        heading: 'Focus areas',
+        items: ['Casing, crown, and panel systems set true', 'Built-ins integrated with existing architecture', 'Transitions planned with flooring and trim profiles'],
+      },
+      {
+        heading: 'Delivery approach',
+        items: ['Material selection confirmed before fabrication', 'Mock-ups where alignment is critical', 'Installed with protected finishes and clean site standards'],
+      },
+    ],
+  },
+  '/repairs-upgrades': {
+    title: 'Repairs, Upgrades & Phased Work',
+    intro: 'Targeted improvements and phased renovations planned to integrate cleanly with future work and long-term goals.',
+    sections: [
+      {
+        heading: 'Typical scopes',
+        items: ['Targeted repairs tied to future phases', 'System and finish upgrades coordinated with existing conditions', 'Prep work that keeps the next phase efficient'],
+      },
+      {
+        heading: 'Planning mindset',
+        items: ['Scope designed to avoid rework later', 'Schedules aligned to material readiness', 'Documentation for continuity into the next phase'],
+      },
+    ],
+  },
+};
+
 export default function App() {
   const year = useMemo(() => new Date().getFullYear(), []);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [snapshotIndex, setSnapshotIndex] = useState(0);
+  const [path, setPath] = useState<string>(() => (typeof window !== 'undefined' ? window.location.pathname : '/'));
 
   const currentSnapshot = deliverySnapshots[snapshotIndex];
 
@@ -170,6 +299,55 @@ export default function App() {
     submitLabel = 'Sending...';
   } else if (status === 'success') {
     submitLabel = 'Sent';
+  }
+
+  useEffect(() => {
+    function handlePopstate() {
+      setPath(window.location.pathname);
+    }
+    window.addEventListener('popstate', handlePopstate);
+    return () => window.removeEventListener('popstate', handlePopstate);
+  }, []);
+
+  const standalonePage = standalonePages[path as keyof typeof standalonePages];
+
+  if (standalonePage) {
+    return (
+      <Shell>
+        <Header />
+        <main className="mt-16 flex flex-col gap-12 sm:gap-16">
+          <section className="space-y-6 rounded-2xl border border-canvas/10 bg-canvas/5 p-8 shadow-card shadow-glow/30">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">{standalonePage.title}</p>
+            <h1 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">{standalonePage.title}</h1>
+            <p className="max-w-2xl text-sm text-steel">{standalonePage.intro}</p>
+            <div className="grid gap-6 md:grid-cols-2">
+              {standalonePage.sections.map((section) => (
+                <article key={section.heading} className="rounded-xl border border-canvas/10 bg-charcoal/60 p-5 shadow-card">
+                  <h2 className="font-display text-lg font-semibold text-canvas">{section.heading}</h2>
+                  <ul className="mt-3 space-y-2 text-sm text-steel">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="text-redwood">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            <div className="pt-2">
+              <a
+                href="/#contact"
+                className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5"
+              >
+                Request a walkthrough
+              </a>
+            </div>
+          </section>
+        </main>
+        <Footer year={year} />
+      </Shell>
+    );
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -330,19 +508,45 @@ export default function App() {
             <SectionHeading
               eyebrow="Offerings"
               title="Renovations led with discipline"
-              copy="General contracting with clear sequencing, accountable budgets, and finish-driven delivery."
+              copy="General contracting defined by clear sequencing, accountable budgets, and finish-driven delivery."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {services.map((service) => (
                 <article key={service.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card shadow-glow/40">
                   <h3 className="font-display text-lg font-semibold text-canvas">{service.title}</h3>
                   <p className="mt-3 text-sm text-steel">{service.copy}</p>
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-redwood">
+                  <a href={service.href} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-redwood">
                     <span>Explore</span>
                     <span aria-hidden>→</span>
-                  </div>
+                  </a>
                 </article>
               ))}
+            </div>
+          </section>
+
+          <section id="specialty-work" className="space-y-6 rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card shadow-glow/30">
+            <SectionHeading
+              eyebrow="Specialty work"
+              title="Advanced carpentry, integrated"
+              copy="Specialty details are planned within the broader renovation so they align with architecture, finishes, and sequencing."
+            />
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 text-sm text-steel">
+                <p className="font-semibold text-canvas">Capabilities</p>
+                <ul className="mt-2 space-y-1">
+                  <li>Concealed storage and integrated panels</li>
+                  <li>Aligned transitions with flooring and trim</li>
+                  <li>Built-ins tied to existing architecture</li>
+                </ul>
+              </div>
+              <div className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 text-sm text-steel">
+                <p className="font-semibold text-canvas">How we deliver</p>
+                <ul className="mt-2 space-y-1">
+                  <li>Details approved before fabrication</li>
+                  <li>Installed with site protection and dust control</li>
+                  <li>Sequenced so specialty work supports the schedule</li>
+                </ul>
+              </div>
             </div>
           </section>
 
