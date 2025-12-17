@@ -244,7 +244,6 @@ export default function App() {
           </div>
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
             <a href="#services">Services</a>
-            <a href="#work">Work</a>
             <a href="#process">Process</a>
             <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
               Request a consult
@@ -255,18 +254,18 @@ export default function App() {
         <main className="flex flex-col gap-16 sm:gap-20">
           <section className="mt-16 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Precision is in our DNA</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">VETERAN-OWNED GENERAL CONTRACTOR</p>
               <h1 className="font-display text-4xl font-semibold leading-tight text-canvas sm:text-5xl lg:text-6xl">
-                Residential renovations managed end to end.
+                Residential renovations, managed end to end.
               </h1>
-                    <p className="max-w-2xl text-lg text-steel">
-                      Veteran-owned general contractor delivering residential renovations with disciplined planning and finish-forward execution at {BRAND_MARK}.
-                    </p>
+              <p className="max-w-2xl text-lg text-steel">
+                Delivering residential renovations through disciplined planning and finish-forward execution.
+              </p>
               <div className="flex flex-wrap gap-3 text-sm text-steel">
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Renovations & remodels</span>
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Project planning & sequencing</span>
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Finish carpentry & millwork</span>
-                <span className="rounded-full border border-canvas/10 px-3 py-2">Hidden doors as needed</span>
+                <span className="rounded-full border border-canvas/10 px-3 py-2">Specialty details as needed</span>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <a
@@ -274,9 +273,6 @@ export default function App() {
                   className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
                 >
                   Request a walkthrough
-                </a>
-                <a href="#work" className="inline-flex items-center text-sm font-semibold text-canvas">
-                  See recent builds →
                 </a>
               </div>
             </div>
@@ -345,26 +341,6 @@ export default function App() {
                     <span>Explore</span>
                     <span aria-hidden>→</span>
                   </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section id="work" className="space-y-8">
-            <SectionHeading
-              eyebrow="Selected work"
-              title="Renovations with finish fidelity"
-              copy="Respecting the existing structure, aligning trims, and integrating specialty elements without calling attention to them."
-            />
-            <div className="grid gap-6 md:grid-cols-3">
-              {projects.map((project) => (
-                <article key={project.name} className="flex flex-col rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-display text-lg font-semibold text-canvas">{project.name}</h3>
-                    <span className="rounded-full bg-redwood/20 px-3 py-1 text-xs font-semibold text-redwood">Case</span>
-                  </div>
-                  <p className="mt-3 text-sm text-steel">{project.summary} Delivered by {BRAND_MARK}.</p>
-                  <div className="mt-auto pt-4 text-sm font-semibold text-redwood">View details →</div>
                 </article>
               ))}
             </div>
