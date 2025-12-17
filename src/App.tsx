@@ -246,7 +246,7 @@ export default function App() {
             <a href="#services">Services</a>
             <a href="#work">Work</a>
             <a href="#process">Process</a>
-            <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
+            <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
               Request a consult
             </a>
           </nav>
@@ -271,7 +271,7 @@ export default function App() {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
                 >
                   Request a walkthrough
                 </a>
