@@ -239,25 +239,33 @@ function Header() {
 
 function Footer({ year }: Readonly<{ year: number }>) {
   return (
-    <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex items-center gap-2 text-canvas">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
-          <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+    <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-2 text-canvas">
+        <div className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
+            <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+          </div>
+          <span>{BRAND_MARK}</span>
         </div>
-        <span>{BRAND_MARK}</span>
+        <div className="flex flex-wrap items-center gap-4 text-steel">
+          <a href="/#services">Services</a>
+          <a href="/#process">Process</a>
+          <a href="/careers">Careers</a>
+          <a href="/#contact">Request a consult</a>
+        </div>
       </div>
-      <div className="flex flex-wrap gap-4">
-        <a href="/#services">Services</a>
-        <a href="/#contact">Contact</a>
-        <a href="/terms">Terms</a>
-        <a href="/privacy">Privacy</a>
-        <div className="flex flex-col leading-tight">
+      <div className="flex flex-col items-start gap-1 sm:items-end">
+        <div className="flex flex-col leading-tight text-right sm:text-right">
           <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
             Loom & Lathe
           </a>
           <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
         </div>
-        <span className="text-steel">© {year}</span>
+        <div className="flex gap-4 text-steel">
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <span>© {year}</span>
+        </div>
       </div>
     </footer>
   );
@@ -811,16 +819,32 @@ export default function App() {
         </main>
 
         <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2 text-canvas">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
-              <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+          <div className="flex flex-col gap-3 text-canvas">
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
+                <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+              </div>
+              <span>{BRAND_MARK}</span>
             </div>
-            <span>{BRAND_MARK}</span>
+            <div className="flex flex-wrap gap-4 text-steel">
+              <a href="#services">Services</a>
+              <a href="#process">Process</a>
+              <a href="/careers">Careers</a>
+              <a href="#contact">Request a consult</a>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-            <span className="text-steel">© {year}</span>
+          <div className="flex flex-col items-start gap-1 sm:items-end">
+            <div className="flex flex-col leading-tight text-right sm:text-right">
+              <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
+                Loom & Lathe
+              </a>
+              <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
+            </div>
+            <div className="flex flex-wrap gap-4 text-steel">
+              <a href="/terms">Terms</a>
+              <a href="/privacy">Privacy</a>
+              <span>© {year}</span>
+            </div>
           </div>
         </footer>
       </div>
