@@ -68,9 +68,9 @@ function Footer({ year }: Readonly<{ year: number }>) {
 
 function loadEcwid(): void {
   const initBrowser = () => {
-    if (globalThis.window === undefined) return;
+    if (typeof window === 'undefined') return;
 
-    const w = globalThis as any;
+    const w = window as any;
 
     if (w.xProductBrowser) {
       w.xProductBrowser('categoriesPerRow=3', 'views=grid(20,3) list(60) table(60)', 'categoryView=grid', 'searchView=list', 'id=my-store-116136023');
@@ -85,18 +85,29 @@ function loadEcwid(): void {
     }
   };
 
-  const existing = document.getElementById('ecwid-script');
+  const scriptId = 'ecwid-script';
+  const existing = document.getElementById(scriptId) as HTMLScriptElement | null;
+
   if (existing) {
-    initBrowser();
+    if (existing.dataset.loaded === 'true') {
+      initBrowser();
+    } else {
+      existing.addEventListener('load', initBrowser, { once: true });
+    }
     return;
   }
 
   const script = document.createElement('script');
-  script.id = 'ecwid-script';
+  script.id = scriptId;
   script.type = 'text/javascript';
   script.src = 'https://app.ecwid.com/script.js?116136023&data_platform=code&data_date=2025-12-17';
-  script.dataset.cfasync = 'false';
-  script.onload = initBrowser;
+  script.defer = true;
+  script.async = true;
+  script.setAttribute('data-cfasync', 'false');
+  script.addEventListener('load', () => {
+    script.dataset.loaded = 'true';
+    initBrowser();
+  });
   document.body.appendChild(script);
 }
 
