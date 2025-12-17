@@ -2,16 +2,16 @@ import { useMemo, useState } from 'react';
 
 const services = [
   {
-    title: 'Hidden doors & entries',
-    copy: 'Bookcase doors, concealed passages, and secure reveals trimmed to match the room.',
+    title: 'Renovations & remodels',
+    copy: 'Full-scope residential projects with planning, permits, and trades managed end to end.',
   },
   {
-    title: 'Built-ins & millwork',
-    copy: 'Wall-to-wall cabinetry, mudrooms, mantels, and trim packages built to your footprint.',
+    title: 'General contracting',
+    copy: 'Scheduling, sequencing, and coordination to keep scope, budget, and finish quality on track.',
   },
   {
-    title: 'Renovations & finish carpentry',
-    copy: 'Precision framing, paneling, and finish details that tie rooms together.',
+    title: 'Finish carpentry & millwork',
+    copy: 'Trim, paneling, built-ins, and specialty elements that close projects with tight fit and alignment.',
   },
 ];
 
@@ -19,53 +19,53 @@ const steps = [
   {
     label: '01',
     title: 'Discover',
-    copy: 'We walk the space, check structure, and confirm the idea is buildable.',
+    copy: 'We walk the space, review structure, and scope what is needed to build it right.',
   },
   {
     label: '02',
-    title: 'Design',
-    copy: 'Renderings, materials, and joinery decisions locked before the first cut.',
+    title: 'Plan',
+    copy: 'Sequence trades, lock materials, and finalize joinery and finishes before work starts.',
   },
   {
     label: '03',
     title: 'Build',
-    copy: 'On-site installs with dust control, clean lines, and daily check-ins until delivery.',
+    copy: 'On-site execution with dust control, clean lines, and daily check-ins until handoff.',
   },
 ];
 
 const highlights = [
-  { title: 'Precision is in our DNA', copy: 'Veteran-owned shop applying engineering discipline to every joint and reveal.' },
-  { title: 'Measured work. Lasting results.', copy: 'Tight fits, matched grain, and hardware set with intent.' },
-  { title: 'Protected investment', copy: 'Clear scope, documented allowances, and work built to hold up.' },
+  { title: 'Precision is in our DNA', copy: 'Veteran-owned shop applying engineering discipline to schedule, scope, and finish.' },
+  { title: 'Measured work. Lasting results.', copy: 'Tight tolerances, aligned trims, and hardware set with intent.' },
+  { title: 'Protected investment', copy: 'Clear scope, documented allowances, and accountable project control.' },
 ];
 
 const faqs = [
   {
     q: 'Where do you work?',
-    a: 'Pennsylvania and nearby markets for specialty installs. Travel projects considered case-by-case.',
+    a: 'Pennsylvania and nearby markets for renovations and finish-driven builds. Travel projects case-by-case.',
   },
   {
     q: 'Do you design and build?',
-    a: 'Yes. Concept through install, collaborating with your architect or designer when provided.',
+    a: 'Yes. Concept through completion, collaborating with your architect or designer when provided.',
   },
   {
     q: 'What makes a great first call?',
-    a: 'Share goals, dimensions, inspiration photos, and timeline. We will return options, samples, and a clear plan.',
+    a: 'Share goals, dimensions, drawings if available, and timing. We will return options, allowances, and a clear plan.',
   },
 ];
 
 const projects = [
   {
-    name: 'Secret bookcase entry',
-    summary: 'Counterweighted bookcase with hidden latch and soft-close swing, stained to match 1940s trim.',
+    name: 'Whole-home refresh',
+    summary: 'Sequenced trades, updated mechanicals, and finish carpentry that ties new spaces back to the original character.',
   },
   {
-    name: 'Tailored mudroom wall',
-    summary: 'White-oak lockers with integrated lighting, brass hooks, and durable benches for a busy family of five.',
+    name: 'Kitchen + mudroom',
+    summary: 'Renovation with site protection, cabinet alignment, integrated lighting, and durable storage for daily use.',
   },
   {
-    name: 'Great room millwork',
-    summary: 'Beam cladding, crown, and paneled columns that tie new cabinetry into the original architecture.',
+    name: 'Living room millwork',
+    summary: 'Beam cladding, crown, and paneling with concealed storage; specialty hardware set flush and true.',
   },
 ];
 
@@ -159,16 +159,16 @@ export default function App() {
             <div className="space-y-8">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Precision is in our DNA</p>
               <h1 className="font-display text-4xl font-semibold leading-tight text-canvas sm:text-5xl lg:text-6xl">
-                Custom carpentry that belongs in your home.
+                Residential renovations managed end to end.
               </h1>
               <p className="max-w-2xl text-lg text-steel">
-                Veteran-owned shop building hidden doors, built-ins, and finish trim. We engineer fits and reveals so they feel original.
+                Veteran-owned general contractor focused on sequencing, scope control, and finish quality. Hidden doors and complex millwork are part of the toolkit, not the whole story.
               </p>
               <div className="flex flex-wrap gap-3 text-sm text-steel">
-                <span className="rounded-full border border-canvas/10 px-3 py-2">Hidden bookcase doors</span>
-                <span className="rounded-full border border-canvas/10 px-3 py-2">Wall-to-wall built-ins</span>
-                <span className="rounded-full border border-canvas/10 px-3 py-2">Crown, beams, paneling</span>
-                <span className="rounded-full border border-canvas/10 px-3 py-2">Trim + finish carpentry</span>
+                <span className="rounded-full border border-canvas/10 px-3 py-2">Renovations & remodels</span>
+                <span className="rounded-full border border-canvas/10 px-3 py-2">Project planning & sequencing</span>
+                <span className="rounded-full border border-canvas/10 px-3 py-2">Finish carpentry & millwork</span>
+                <span className="rounded-full border border-canvas/10 px-3 py-2">Hidden doors as needed</span>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <a
@@ -193,16 +193,16 @@ export default function App() {
                 <Divider />
                 <div className="grid grid-cols-2 gap-6 text-canvas sm:grid-cols-3">
                   <div>
-                    <p className="text-3xl font-semibold"><span className="text-redwood">48</span></p>
-                    <p className="text-sm text-steel">Hidden doors & bookcase entries installed</p>
+                    <p className="text-3xl font-semibold"><span className="text-redwood">40+</span></p>
+                    <p className="text-sm text-steel">Renovations managed with schedule control</p>
                   </div>
                   <div>
                     <p className="text-3xl font-semibold">2-4 wks</p>
-                    <p className="text-sm text-steel">Typical concept-to-install timeline</p>
+                    <p className="text-sm text-steel">Typical planning window before site start</p>
                   </div>
                   <div>
                     <p className="text-3xl font-semibold">5⭐</p>
-                    <p className="text-sm text-steel">Homeowners who call us back for the next room</p>
+                    <p className="text-sm text-steel">Clients who return for the next phase</p>
                   </div>
                 </div>
                 <Divider />
@@ -226,8 +226,8 @@ export default function App() {
           <section id="services" className="space-y-8">
             <SectionHeading
               eyebrow="Offerings"
-              title="Built to fit. Engineered to last."
-              copy="Precision joinery aligned to your home, not a catalog."
+              title="Renovations led with discipline"
+              copy="General contracting with clear sequencing, accountable budgets, and finish-driven delivery."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {services.map((service) => (
@@ -246,8 +246,8 @@ export default function App() {
           <section id="work" className="space-y-8">
             <SectionHeading
               eyebrow="Selected work"
-              title="Craft that feels custom"
-              copy="Every project respects the existing architecture - grain matched, trim aligned, hardware chosen for how you live."
+              title="Renovations with finish fidelity"
+              copy="Respecting the existing structure, aligning trims, and integrating specialty elements without calling attention to them."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {projects.map((project) => (
@@ -267,7 +267,7 @@ export default function App() {
             <SectionHeading
               eyebrow="Approach"
               title="A steady, intentional process"
-              copy="Clean job sites, clear updates, and work you can feel every time you open the door."
+              copy="Clean job sites, clear updates, and work that feels solid every time you open the door."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {steps.map((step) => (
@@ -289,7 +289,7 @@ export default function App() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Start a project</p>
                 <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Tell us about your space</h2>
                 <p className="text-sm text-steel">
-                  We reply within one business day. This form routes straight to the shop. Share the room, dimensions, timing, and any inspiration - we will return with a plan.
+                  We reply within one business day. This form routes straight to the shop. Share scope, dimensions, timing, and any drawings - we will return with a plan.
                 </p>
                 <ul className="grid gap-3 text-sm text-steel">
                   <li className="flex items-center gap-2">
@@ -348,12 +348,12 @@ export default function App() {
                   <select
                     name="projectType"
                     className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
-                    defaultValue="Hidden door"
+                    defaultValue="Renovation / remodel"
                   >
-                    <option>Hidden door</option>
-                    <option>Built-ins / cabinetry</option>
-                    <option>Trim & finish carpentry</option>
-                    <option>Renovation support</option>
+                    <option>Renovation / remodel</option>
+                    <option>Kitchen / bath</option>
+                    <option>Finish carpentry & millwork</option>
+                    <option>Hidden door / specialty feature</option>
                     <option>Other</option>
                   </select>
                 </label>
