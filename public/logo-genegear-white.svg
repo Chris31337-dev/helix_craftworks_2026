@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Helix Craftworks gene gear logo">
+  <defs>
+    <style>
+      .stroke { stroke: #f5f7fa; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+      .fill { fill: #f5f7fa; }
+    </style>
+  </defs>
+  <!-- Outer gear ring rendered with dashed stroke to suggest teeth without heavy detail -->
+  <circle cx="60" cy="60" r="44" class="stroke" stroke-dasharray="10 8" />
+  <!-- Inner ring for contrast -->
+  <circle cx="60" cy="60" r="32" class="stroke" opacity="0.55" />
+  <!-- Helix rails -->
+  <path d="M46 22c16 9 16 67 0 76" class="stroke" />
+  <path d="M74 22c-16 9 -16 67 0 76" class="stroke" />
+  <!-- Helix rungs -->
+  <path d="M50 30h20" class="stroke" opacity="0.8" />
+  <path d="M48 40h24" class="stroke" opacity="0.8" />
+  <path d="M46 50h28" class="stroke" opacity="0.8" />
+  <path d="M46 60h28" class="stroke" opacity="0.8" />
+  <path d="M46 70h28" class="stroke" opacity="0.8" />
+  <path d="M48 80h24" class="stroke" opacity="0.8" />
+  <path d="M50 90h20" class="stroke" opacity="0.8" />
+</svg>

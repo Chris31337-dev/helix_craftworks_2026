@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
+import headerLogo from '../Assets/Asset 25@1.5x.webp';
 
 const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
 const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}®`;
-const HEADER_LOGO_SRC = '/favicon/android-chrome-192x192.png';
+const HEADER_LOGO_SRC = headerLogo;
 
 const services = [
   {
@@ -42,17 +43,17 @@ const steps = [
   {
     label: '01',
     title: 'Discover',
-    copy: 'We walk the space, review structure, and scope what is needed to build it right.',
+    copy: 'We walk the space, review structure, and define scope so the work is understood before decisions are made.',
   },
   {
     label: '02',
     title: 'Plan',
-    copy: 'Sequence trades, lock materials, and finalize joinery and finishes before work starts.',
+    copy: 'Trades are sequenced, materials are locked, and details are finalized before work begins.',
   },
   {
     label: '03',
     title: 'Build',
-    copy: 'On-site execution with dust control, clean lines, and daily check-ins until handoff.',
+    copy: 'On-site execution with active supervision, dust control, clean lines, and daily check-ins through handoff.',
   },
 ];
 
@@ -220,6 +221,8 @@ function Footer({ year }: Readonly<{ year: number }>) {
       <div className="flex flex-wrap gap-4">
         <a href="/#services">Services</a>
         <a href="/#contact">Contact</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
         <span className="text-steel">© {year}</span>
       </div>
     </footer>
@@ -280,6 +283,42 @@ const standalonePages = {
       {
         heading: 'Planning mindset',
         items: ['Scope designed to avoid rework later', 'Schedules aligned to material readiness', 'Documentation for continuity into the next phase'],
+      },
+    ],
+  },
+  '/terms': {
+    title: 'Terms & Conditions',
+    intro: 'These terms outline how Helix Craftworks engages with site visitors and prospective clients. Please review before contacting us.',
+    sections: [
+      {
+        heading: 'Use of this site',
+        items: ['Content is informational and may change without notice', 'No warranties are expressed or implied for site accuracy', 'Do not reuse images or copy without permission'],
+      },
+      {
+        heading: 'Engagements',
+        items: ['Work is governed by executed contracts and approved scopes', 'Schedules and pricing are finalized in written agreements', 'Change orders require written approval before execution'],
+      },
+      {
+        heading: 'Liability',
+        items: ['Helix is not responsible for third-party sites linked here', 'We are not liable for losses arising from site use', 'Your use of the site indicates acceptance of these terms'],
+      },
+    ],
+  },
+  '/privacy': {
+    title: 'Privacy Policy',
+    intro: 'We collect only the information needed to respond to project inquiries and operate this site. We do not sell your data.',
+    sections: [
+      {
+        heading: 'Information collected',
+        items: ['Contact form details you provide (name, email, project context)', 'Basic site analytics to improve usability', 'No sensitive personal data is requested'],
+      },
+      {
+        heading: 'How we use it',
+        items: ['To respond to your inquiry and plan project discussions', 'To maintain site security and performance', 'To improve our communication and scheduling workflows'],
+      },
+      {
+        heading: 'Sharing',
+        items: ['We do not sell or rent your information', 'Vendors receive data only when needed to service your request and subject to confidentiality', 'You may request deletion of your submitted information'],
       },
     ],
   },
@@ -528,7 +567,7 @@ export default function App() {
             <SectionHeading
               eyebrow="Specialty work"
               title="Advanced carpentry, integrated"
-              copy="Specialty details are planned within the broader renovation so they align with architecture, finishes, and sequencing."
+              copy="Specialty details are planned within the broader renovation so they align with architecture, finishes, and sequencing from the start."
             />
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 text-sm text-steel">
@@ -536,7 +575,7 @@ export default function App() {
                 <ul className="mt-2 space-y-1">
                   <li>Concealed storage and integrated panels</li>
                   <li>Aligned transitions with flooring and trim</li>
-                  <li>Built-ins tied to existing architecture</li>
+                  <li>Built-ins tied to the existing architecture</li>
                 </ul>
               </div>
               <div className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 text-sm text-steel">
@@ -544,17 +583,18 @@ export default function App() {
                 <ul className="mt-2 space-y-1">
                   <li>Details approved before fabrication</li>
                   <li>Installed with site protection and dust control</li>
-                  <li>Sequenced so specialty work supports the schedule</li>
+                  <li>Sequenced to support the overall schedule</li>
                 </ul>
               </div>
             </div>
+            <p className="text-sm text-steel">Integrated into the renovation. Never treated as a standalone feature.</p>
           </section>
 
           <section id="process" className="space-y-8">
             <SectionHeading
               eyebrow="Approach"
               title="A steady, intentional process"
-              copy="Clean job sites, clear updates, and work that feels solid every time you open the door."
+              copy="Clean job sites, clear updates, and work that holds up every time you open the door."
             />
             <div className="grid gap-6 md:grid-cols-3">
               {steps.map((step) => (
@@ -568,6 +608,7 @@ export default function App() {
                 </article>
               ))}
             </div>
+            <p className="text-sm text-steel">No rushed decisions. No loose ends.</p>
           </section>
 
           <section id="contact" className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-canvas/5 via-redwood/10 to-charcoal p-8 shadow-glow sm:p-10">
@@ -576,20 +617,20 @@ export default function App() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Start a project</p>
                 <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Tell us about your space</h2>
                 <p className="text-sm text-steel">
-                  We reply within one business day. This form routes straight to the shop at {BRAND_MARK}. Share scope, dimensions, timing, and any drawings - we will return with a plan.
+                  We reply within one business day. This form goes straight to the project lead at {BRAND_MARK}. Share scope, rough dimensions, timing, and any inspiration. We'll come back with next steps and a plan.
                 </p>
                 <ul className="grid gap-3 text-sm text-steel">
                   <li className="flex items-center gap-2">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
-                    Hidden doors, built-ins, trim, and custom millwork
+                    Renovations, remodels, and finish-driven improvements
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
-                    Clean job sites with dust control and daily updates
+                    Clear scope, clean sequencing, and steady updates
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
-                    Veteran-owned, detail-obsessed craftsmanship
+                    Veteran-owned. Detail-forward execution.
                   </li>
                 </ul>
               </div>
@@ -630,18 +671,46 @@ export default function App() {
                     />
                   </label>
                 </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="text-sm text-steel">
+                    Project location (city/town)
+                    <input
+                      name="location"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
+                      placeholder="Philadelphia, PA"
+                    />
+                  </label>
+                  <label className="text-sm text-steel">
+                    When are you hoping to start?
+                    <select
+                      name="startTimeframe"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                      defaultValue="ASAP / next 30 days"
+                    >
+                      <option>ASAP / next 30 days</option>
+                      <option>1–3 months</option>
+                      <option>3–6 months</option>
+                      <option>6+ months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </label>
+                </div>
                 <label className="text-sm text-steel">
                   Project type
                   <select
                     name="projectType"
                     className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
-                    defaultValue="Renovation / remodel"
+                    defaultValue="Kitchen renovation"
                   >
-                    <option>Renovation / remodel</option>
-                    <option>Kitchen / bath</option>
-                    <option>Finish carpentry & millwork</option>
-                    <option>Hidden door / specialty feature</option>
-                    <option>Other</option>
+                    <option>Kitchen renovation</option>
+                    <option>Bathroom renovation</option>
+                    <option>Basement / lower level</option>
+                    <option>Whole-home / multi-room</option>
+                    <option>Structural / framing work</option>
+                    <option>Finish carpentry & built-ins</option>
+                    <option>Repairs / phased upgrades</option>
+                    <option>Specialty detail (concealed storage / hidden door)</option>
+                    <option>Not sure yet (help me scope it)</option>
                   </select>
                 </label>
                 <label className="text-sm text-steel">
@@ -655,6 +724,7 @@ export default function App() {
                     <option>$25k–$50k</option>
                     <option>$50k–$100k</option>
                     <option>$100k+</option>
+                    <option>Not sure yet</option>
                   </select>
                 </label>
                 <label className="text-sm text-steel">
@@ -664,7 +734,7 @@ export default function App() {
                     name="message"
                     rows={4}
                     className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
-                    placeholder="Room, dimensions, timing, links to inspiration"
+                    placeholder="Rooms involved, what's changing, rough dimensions, desired start date, and any links/photos."
                   />
                 </label>
                 <button
@@ -672,7 +742,7 @@ export default function App() {
                   disabled={status === 'sending' || status === 'success'}
                   className="w-full rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {submitLabel}
+                  Request a walkthrough
                 </button>
                 {status === 'success' ? (
                   <output className="rounded-lg border border-redwood/30 bg-redwood/10 px-3 py-2 text-sm text-canvas" aria-live="polite">
