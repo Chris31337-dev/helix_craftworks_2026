@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import headerLogo from '../Assets/Asset 25@1.5x.webp';
 import CareersPage from './pages/Careers';
+import StorePage from './pages/Store';
 
 const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
@@ -190,7 +191,7 @@ function Shell({ children }: Readonly<{ children: React.ReactNode }>) {
 function Header() {
   return (
     <header className="flex items-center justify-between">
-      <div className="flex items-center gap-3">
+      <a href="/#top" className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 shadow-glow">
           <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
         </div>
@@ -198,7 +199,7 @@ function Header() {
           <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
           <p className="text-xs text-steel">Custom Renovations. Visible craftsmanship. Built by {BRAND_MARK}.</p>
         </div>
-      </div>
+      </a>
       <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
         <a href="/#services">Services</a>
         <a href="/#process">Process</a>
@@ -225,6 +226,12 @@ function Footer({ year }: Readonly<{ year: number }>) {
         <a href="/#contact">Contact</a>
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>
+        <div className="flex flex-col leading-tight">
+          <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
+            Loom & Lathe
+          </a>
+          <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
+        </div>
         <span className="text-steel">© {year}</span>
       </div>
     </footer>
@@ -346,6 +353,10 @@ export default function App() {
   if (path === '/careers') {
     return <CareersPage />;
   }
+  
+  if (path === '/store') {
+    return <StorePage />;
+  }
 
   const standalonePage = standalonePages[path as keyof typeof standalonePages];
 
@@ -449,7 +460,7 @@ export default function App() {
       <div className="absolute inset-0 -z-20 opacity-25 bg-grid-light bg-[length:140px_140px]" aria-hidden />
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pb-16 pt-10 sm:px-10 sm:pt-14 lg:px-14">
         <header className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <a href="/#top" className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 shadow-glow">
               <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
             </div>
@@ -457,7 +468,7 @@ export default function App() {
               <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
               <p className="text-xs text-steel">Custom Renovations. Visible craftsmanship. Built by {BRAND_MARK}.</p>
             </div>
-          </div>
+          </a>
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
             <a href="#services">Services</a>
             <a href="#process">Process</a>
@@ -468,7 +479,7 @@ export default function App() {
           </nav>
         </header>
 
-        <main className="flex flex-col gap-16 sm:gap-20">
+        <main id="top" className="flex flex-col gap-16 sm:gap-20">
           <section className="mt-16 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-8">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">VETERAN-OWNED GENERAL CONTRACTOR</p>
