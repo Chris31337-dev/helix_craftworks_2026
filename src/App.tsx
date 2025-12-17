@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
-import logoMark from '../Assets/Asset 174x.png';
 
 const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
 const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}®`;
+const HEADER_LOGO_SRC = '/favicon/android-chrome-192x192.png';
 
 const services = [
   {
@@ -38,10 +38,95 @@ const steps = [
   },
 ];
 
-const highlights = [
-  { title: 'Precision is in our DNA', copy: 'Veteran-owned shop applying engineering discipline to schedule, scope, and finish.' },
-  { title: 'Measured work. Lasting results.', copy: 'Tight tolerances, aligned trims, and hardware set with intent.' },
-  { title: 'Protected investment', copy: 'Clear scope, documented allowances, and accountable project control.' },
+const deliverySnapshots = [
+  {
+    title: 'Process & control',
+    tag: 'Very Helix, Very GC',
+    description: 'Signals that we run projects, not just build things.',
+    stats: [
+      { value: '95%+', label: 'Projects delivered within approved scope' },
+      { value: '0', label: 'Surprise change orders without written approval' },
+      { value: '1', label: 'Point of contact from planning through close-out' },
+      { value: 'Weekly', label: 'Schedule updates during active builds' },
+    ],
+    note: 'Discipline and accountability without sounding defensive.',
+  },
+  {
+    title: 'Scheduling & reliability',
+    tag: 'Client-calming stats',
+    description: 'Speaks directly to homeowner anxiety.',
+    stats: [
+      { value: '90%+', label: 'Milestones hit as scheduled' },
+      { value: 'On-site daily', label: 'Active supervision during critical phases' },
+      { value: '48 hrs', label: 'Average response time during active projects' },
+      { value: 'No gaps', label: 'Trades sequenced without idle downtime' },
+    ],
+    note: 'Pairs well with the 2–4 wks planning stat.',
+  },
+  {
+    title: 'Quality & finish',
+    tag: 'Craft without novelty',
+    description: 'Proof points beyond hidden doors.',
+    stats: [
+      { value: 'Tight tolerances', label: 'Trim, reveals, and cabinetry aligned on install' },
+      { value: 'Pre-finish planning', label: 'Materials selected and approved before demo' },
+      { value: 'Zero callbacks', label: 'For finish corrections on completed projects' },
+      { value: 'Matched materials', label: 'Trim profiles and finishes aligned to existing architecture' },
+    ],
+    note: 'Text-led stats stay believable.',
+  },
+  {
+    title: 'Client trust & repeat work',
+    tag: 'Quiet flex',
+    description: 'Says we stick around without bragging.',
+    stats: [
+      { value: 'Most work', label: 'Comes from repeat clients and referrals' },
+      { value: 'Next-phase ready', label: 'Clients who continue with additional rooms' },
+      { value: 'Long-term clients', label: 'Homeowners who bring us back years later' },
+    ],
+    note: 'Signals longevity and calm delivery.',
+  },
+  {
+    title: 'Jobsite discipline',
+    tag: 'Underrated, powerful',
+    description: 'Homeowners notice the basics.',
+    stats: [
+      { value: 'Daily cleanup', label: 'Active job sites reset before we leave' },
+      { value: 'Dust control', label: 'Used on all interior renovations' },
+      { value: 'Protected finishes', label: 'Floors, trim, and paths covered before work begins' },
+    ],
+    note: 'Often outperforms flashy stats in conversion.',
+  },
+  {
+    title: 'Snapshot A: GC authority',
+    tag: 'Top recommendation',
+    description: 'Pick three that reinforce control.',
+    stats: [
+      { value: '40+', label: 'Renovations managed with schedule control' },
+      { value: '90%+', label: 'Milestones hit as planned' },
+      { value: '5⭐', label: 'Clients who return for the next phase' },
+    ],
+  },
+  {
+    title: 'Snapshot B: Process-led, calm',
+    tag: 'Client-calming',
+    description: 'Shows planning and steady communication.',
+    stats: [
+      { value: '2–4 wks', label: 'Planning window before site start' },
+      { value: 'Weekly', label: 'Schedule and progress updates' },
+      { value: '1', label: 'Point of contact throughout the project' },
+    ],
+  },
+  {
+    title: 'Snapshot C: Finish-forward',
+    tag: 'Subtle flex',
+    description: 'Craft-first proof points.',
+    stats: [
+      { value: 'Tight tolerances', label: 'On trim, reveals, and cabinetry' },
+      { value: 'Zero', label: 'Finish callbacks on completed projects' },
+      { value: 'Matched materials', label: 'Selected before demo begins' },
+    ],
+  },
 ];
 
 const faqs = [
@@ -78,7 +163,7 @@ function Divider() {
   return <div className="h-px w-full bg-canvas/10" />;
 }
 
-function SectionHeading({ title, eyebrow, copy }: { title: string; eyebrow: string; copy?: string }) {
+function SectionHeading({ title, eyebrow, copy }: Readonly<{ title: string; eyebrow: string; copy?: string }>) {
   return (
     <div className="space-y-3">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">{eyebrow}</p>
@@ -94,6 +179,16 @@ export default function App() {
   const year = useMemo(() => new Date().getFullYear(), []);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [snapshotIndex, setSnapshotIndex] = useState(0);
+
+  const currentSnapshot = deliverySnapshots[snapshotIndex];
+
+  let submitLabel = 'Send message';
+  if (status === 'sending') {
+    submitLabel = 'Sending...';
+  } else if (status === 'success') {
+    submitLabel = 'Sent';
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -104,7 +199,15 @@ export default function App() {
     const formData = new FormData(form);
     const body = new URLSearchParams();
     formData.forEach((value, key) => {
-      body.append(key, value.toString());
+      let stringValue: string;
+      if (typeof value === 'string') {
+        stringValue = value;
+      } else if (value instanceof File) {
+        stringValue = value.name;
+      } else {
+        stringValue = String(value);
+      }
+      body.append(key, stringValue);
     });
 
     // Netlify returns 303 redirects for standard form posts. Setting Accept to application/json
@@ -134,6 +237,14 @@ export default function App() {
     }
   }
 
+  function showPrevSnapshot() {
+    setSnapshotIndex((prev) => (prev - 1 + deliverySnapshots.length) % deliverySnapshots.length);
+  }
+
+  function showNextSnapshot() {
+    setSnapshotIndex((prev) => (prev + 1) % deliverySnapshots.length);
+  }
+
   return (
     <div className="min-h-screen bg-charcoal text-canvas">
       <div className="absolute inset-0 -z-10 bg-radial-spot" aria-hidden />
@@ -142,7 +253,7 @@ export default function App() {
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 shadow-glow">
-              <img src={logoMark} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
+              <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
             </div>
             <div>
               <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
@@ -191,38 +302,49 @@ export default function App() {
             <div className="relative overflow-hidden rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
               <div className="absolute inset-0 bg-gradient-to-br from-canvas/5 via-redwood/10 to-transparent" aria-hidden />
               <div className="relative space-y-6">
-                <div className="flex items-baseline justify-between">
-                  <p className="text-sm uppercase tracking-[0.2em] text-steel">Delivery snapshot</p>
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.2em] text-steel">Delivery snapshot</p>
+                    <p className="font-display text-xl font-semibold text-canvas">{currentSnapshot.title}</p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-redwood">{currentSnapshot.tag}</p>
+                  </div>
                   <span className="rounded-full bg-canvas/10 px-3 py-1 text-xs text-canvas">Real homes, real installs</span>
                 </div>
+                <p className="text-sm text-steel">{currentSnapshot.description}</p>
                 <Divider />
-                <div className="grid grid-cols-2 gap-6 text-canvas sm:grid-cols-3">
-                  <div>
-                    <p className="text-3xl font-semibold"><span className="text-redwood">40+</span></p>
-                    <p className="text-sm text-steel">Renovations managed with schedule control</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-semibold">2-4 wks</p>
-                    <p className="text-sm text-steel">Typical planning window before site start</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-semibold">5⭐</p>
-                    <p className="text-sm text-steel">Clients who return for the next phase</p>
-                  </div>
-                </div>
-                <Divider />
-                <div className="grid gap-3 text-sm text-steel">
-                  {highlights.map((item) => (
-                    <div key={item.title} className="flex items-start gap-3 rounded-xl bg-charcoal/60 p-3">
-                      <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-redwood/20 text-xs font-semibold text-redwood">
-                        ●
-                      </span>
-                      <div>
-                        <p className="text-canvas">{item.title}</p>
-                        <p className="text-steel">{item.copy}</p>
-                      </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {currentSnapshot.stats.map((item) => (
+                    <div key={`${currentSnapshot.title}-${item.label}`} className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 shadow-glow/30">
+                      <p className="text-2xl font-semibold text-canvas">
+                        <span className="text-redwood">{item.value}</span>
+                      </p>
+                      <p className="mt-2 text-sm text-steel">{item.label}</p>
                     </div>
                   ))}
+                </div>
+                {currentSnapshot.note ? <p className="text-xs text-steel">{currentSnapshot.note}</p> : null}
+                <div className="flex items-center justify-between pt-2">
+                  <div className="text-xs uppercase tracking-[0.18em] text-steel">
+                    {snapshotIndex + 1} / {deliverySnapshots.length}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={showPrevSnapshot}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 text-canvas transition hover:-translate-y-0.5"
+                      aria-label="Previous snapshot"
+                    >
+                      ←
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showNextSnapshot}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 text-canvas transition hover:-translate-y-0.5"
+                      aria-label="Next snapshot"
+                    >
+                      →
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -390,12 +512,12 @@ export default function App() {
                   disabled={status === 'sending' || status === 'success'}
                   className="w-full rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {status === 'sending' ? 'Sending...' : status === 'success' ? 'Sent' : 'Send message'}
+                  {submitLabel}
                 </button>
                 {status === 'success' ? (
-                  <div className="rounded-lg border border-redwood/30 bg-redwood/10 px-3 py-2 text-sm text-canvas" role="status" aria-live="polite">
+                  <output className="rounded-lg border border-redwood/30 bg-redwood/10 px-3 py-2 text-sm text-canvas" aria-live="polite">
                     Thanks for reaching out. We will reply within one business day.
-                  </div>
+                  </output>
                 ) : null}
                 {status === 'error' ? (
                   <div className="rounded-lg border border-redwood/40 bg-redwood/10 px-3 py-2 text-sm text-redwood" role="alert" aria-live="assertive">
@@ -425,7 +547,7 @@ export default function App() {
         <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2 text-canvas">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
-              <img src={logoMark} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+              <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
             </div>
             <span>{BRAND_MARK}</span>
           </div>
