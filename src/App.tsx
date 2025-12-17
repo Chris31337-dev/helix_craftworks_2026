@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import headerLogo from '../Assets/Asset 25@1.5x.webp';
+import CareersPage from './pages/Careers';
 
 const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
@@ -201,6 +202,7 @@ function Header() {
       <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
         <a href="/#services">Services</a>
         <a href="/#process">Process</a>
+        <a href="/careers">Careers</a>
         <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
           Request a consult
         </a>
@@ -348,6 +350,10 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopstate);
   }, []);
 
+  if (path === '/careers') {
+    return <CareersPage />;
+  }
+
   const standalonePage = standalonePages[path as keyof typeof standalonePages];
 
   if (standalonePage) {
@@ -462,6 +468,7 @@ export default function App() {
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
             <a href="#services">Services</a>
             <a href="#process">Process</a>
+            <a href="/careers">Careers</a>
             <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
               Request a consult
             </a>
@@ -684,7 +691,7 @@ export default function App() {
                     When are you hoping to start?
                     <select
                       name="startTimeframe"
-                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
                       defaultValue="ASAP / next 30 days"
                     >
                       <option>ASAP / next 30 days</option>
@@ -699,7 +706,7 @@ export default function App() {
                   Project type
                   <select
                     name="projectType"
-                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
                     defaultValue="Kitchen renovation"
                   >
                     <option>Kitchen renovation</option>
@@ -717,7 +724,7 @@ export default function App() {
                   Budget range
                   <select
                     name="budget"
-                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
                     defaultValue="$10k–$25k"
                   >
                     <option>$10k–$25k</option>
