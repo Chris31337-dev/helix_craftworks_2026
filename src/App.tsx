@@ -239,7 +239,7 @@ export default function App() {
             </div>
             <div>
               <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
-              <p className="text-xs text-steel">Hidden doors. Visible craftsmanship. Built by {BRAND_MARK}.</p>
+              <p className="text-xs text-steel">Custom Renovations. Visible craftsmanship. Built by {BRAND_MARK}.</p>
             </div>
           </div>
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
@@ -288,7 +288,6 @@ export default function App() {
                   <div>
                     <p className="text-sm uppercase tracking-[0.2em] text-steel">Delivery snapshot</p>
                     <p className="font-display text-xl font-semibold text-canvas">{currentSnapshot.title}</p>
-                    <p className="text-xs uppercase tracking-[0.18em] text-redwood">{currentSnapshot.tag}</p>
                   </div>
                   <span className="rounded-full bg-canvas/10 px-3 py-1 text-xs text-canvas">Real homes, real installs</span>
                 </div>
@@ -304,7 +303,6 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-                {currentSnapshot.note ? <p className="text-xs text-steel">{currentSnapshot.note}</p> : null}
                 <div className="flex items-center justify-between pt-2">
                   <div className="text-xs uppercase tracking-[0.18em] text-steel">
                     {snapshotIndex + 1} / {deliverySnapshots.length}
