@@ -803,6 +803,24 @@ export default function App() {
                 </p>
               </form>
             </div>
+
+            <div className="space-y-4">
+              <article className="rounded-2xl border border-canvas/10 bg-canvas/5 p-5 shadow-card">
+                <h3 className="font-display text-lg font-semibold text-canvas">Other inquiries</h3>
+                <p className="mt-2 text-xs text-steel">Pennsylvania-based. Travel considered case-by-case.</p>
+                <ul className="mt-3 space-y-2 text-sm text-steel">
+                  <li>
+                    <a href="/careers" className="text-redwood">Careers</a>
+                  </li>
+                  <li>
+                    <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-redwood">Loom & Lathe</a>
+                  </li>
+                  <li>
+                    <a href="mailto:chris@helixcraftworks.com" className="text-redwood">General email</a>
+                  </li>
+                </ul>
+              </article>
+            </div>
           </section>
 
           <section className="space-y-6">
