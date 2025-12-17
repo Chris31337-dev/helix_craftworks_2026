@@ -288,8 +288,8 @@ export default function App() {
                   <div>
                     <p className="text-sm uppercase tracking-[0.2em] text-steel">Delivery snapshot</p>
                     <p className="font-display text-xl font-semibold text-canvas">{currentSnapshot.title}</p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-redwood">{currentSnapshot.tag}</p>
                   </div>
-                  <span className="rounded-full bg-canvas/10 px-3 py-1 text-xs text-canvas">Real homes, real installs</span>
                 </div>
                 <p className="text-sm text-steel">{currentSnapshot.description}</p>
                 <Divider />
