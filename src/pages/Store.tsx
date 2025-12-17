@@ -32,7 +32,7 @@ function Header() {
         <a href="/#services">Services</a>
         <a href="/#process">Process</a>
         <a href="/careers">Careers</a>
-        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
+        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card transition hover:-translate-y-0.5">
           Request a consult
         </a>
       </nav>
@@ -68,9 +68,9 @@ function Footer({ year }: Readonly<{ year: number }>) {
 
 function loadEcwid(): void {
   const initBrowser = () => {
-    if (typeof window === 'undefined') return;
+    if (globalThis.window === undefined) return;
 
-    const w = window as any;
+    const w = globalThis as any;
 
     if (w.xProductBrowser) {
       w.xProductBrowser('categoriesPerRow=3', 'views=grid(20,3) list(60) table(60)', 'categoryView=grid', 'searchView=list', 'id=my-store-116136023');
@@ -80,7 +80,7 @@ function loadEcwid(): void {
       w.xCategoriesV2('id=my-categories-116136023');
     }
 
-    if (w.Ecwid && w.Ecwid.init) {
+    if (w.Ecwid?.init) {
       w.Ecwid.init();
     }
   };
@@ -95,8 +95,7 @@ function loadEcwid(): void {
   script.id = 'ecwid-script';
   script.type = 'text/javascript';
   script.src = 'https://app.ecwid.com/script.js?116136023&data_platform=code&data_date=2025-12-17';
-  script.charset = 'utf-8';
-  script.setAttribute('data-cfasync', 'false');
+  script.dataset.cfasync = 'false';
   script.onload = initBrowser;
   document.body.appendChild(script);
 }

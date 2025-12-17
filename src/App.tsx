@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import headerLogo from '../Assets/Asset 25@1.5x.webp';
 import CareersPage from './pages/Careers';
-import StorePage from './pages/Store';
 
 const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
@@ -161,6 +160,32 @@ const projects = [
     summary: 'Beam cladding, crown, and paneling with concealed storage; specialty hardware set flush and true.',
   },
 ];
+
+function StorePage({ year }: Readonly<{ year: number }>) {
+  return (
+    <Shell>
+      <Header />
+      <main className="mt-16 space-y-10 sm:space-y-14">
+        <section className="rounded-3xl border border-canvas/10 bg-canvas/5 p-8 shadow-card shadow-glow/30 sm:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Loom &amp; Lathe</p>
+          <h1 className="mt-2 font-display text-3xl font-semibold text-canvas sm:text-4xl">Helix Craftworks Store</h1>
+          <p className="mt-4 max-w-2xl text-sm text-steel">
+            Apparel and small-batch goods built with the same attention to detail we bring to every renovation. Visit the store to browse and order.
+          </p>
+          <a
+            href="https://store.helixcraftworks.com"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Go to store
+          </a>
+        </section>
+      </main>
+      <Footer year={year} />
+    </Shell>
+  );
+}
 
 function Divider() {
   return <div className="h-px w-full bg-canvas/10" />;
@@ -355,7 +380,7 @@ export default function App() {
   }
   
   if (path === '/store') {
-    return <StorePage />;
+    return <StorePage year={year} />;
   }
 
   const standalonePage = standalonePages[path as keyof typeof standalonePages];
