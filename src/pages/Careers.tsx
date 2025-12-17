@@ -61,7 +61,7 @@ function Header() {
         <a href="/#services">Services</a>
         <a href="/#process">Process</a>
         <a href="/careers">Careers</a>
-        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
+        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
           Request a consult
         </a>
       </nav>

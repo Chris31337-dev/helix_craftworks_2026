@@ -203,7 +203,7 @@ function Header() {
         <a href="/#services">Services</a>
         <a href="/#process">Process</a>
         <a href="/careers">Careers</a>
-        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5">
+        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
           Request a consult
         </a>
       </nav>
@@ -331,23 +331,16 @@ export default function App() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [snapshotIndex, setSnapshotIndex] = useState(0);
-  const [path, setPath] = useState<string>(() => (typeof window !== 'undefined' ? window.location.pathname : '/'));
+  const [path, setPath] = useState<string>(() => (globalThis.window === undefined ? '/' : globalThis.window.location.pathname));
 
   const currentSnapshot = deliverySnapshots[snapshotIndex];
 
-  let submitLabel = 'Send message';
-  if (status === 'sending') {
-    submitLabel = 'Sending...';
-  } else if (status === 'success') {
-    submitLabel = 'Sent';
-  }
-
   useEffect(() => {
     function handlePopstate() {
-      setPath(window.location.pathname);
+      setPath(globalThis.window.location.pathname);
     }
-    window.addEventListener('popstate', handlePopstate);
-    return () => window.removeEventListener('popstate', handlePopstate);
+    globalThis.addEventListener('popstate', handlePopstate);
+    return () => globalThis.removeEventListener('popstate', handlePopstate);
   }, []);
 
   if (path === '/careers') {
@@ -383,7 +376,7 @@ export default function App() {
             <div className="pt-2">
               <a
                 href="/#contact"
-                className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-card shadow-glow transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
               >
                 Request a walkthrough
               </a>
