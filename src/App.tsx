@@ -267,7 +267,6 @@ export default function App() {
             <SectionHeading
               eyebrow="Approach"
               title="A steady, intentional process"
-              copy="Clean job sites, clear updates, and craftsmanship you can feel when you open the door."
               copy="Clean job sites, clear updates, and work you can feel every time you open the door."
             />
             <div className="grid gap-6 md:grid-cols-3">
