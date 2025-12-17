@@ -1,4 +1,9 @@
 import { useMemo, useState } from 'react';
+import logoMark from '../Assets/Asset 174x.png';
+
+const BRAND = 'Helix Craftworks';
+const BRAND_MARK = `${BRAND}®`;
+const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}®`;
 
 const services = [
   {
@@ -137,11 +142,11 @@ export default function App() {
         <header className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 shadow-glow">
-              <span className="font-display text-lg font-semibold text-canvas">H</span>
+              <img src={logoMark} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
             </div>
             <div>
-              <p className="font-display text-sm font-semibold text-canvas">Helix Craftworks</p>
-              <p className="text-xs text-steel">Hidden doors. Visible craftsmanship.</p>
+              <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
+              <p className="text-xs text-steel">Hidden doors. Visible craftsmanship. Built by {BRAND_MARK}.</p>
             </div>
           </div>
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
@@ -161,9 +166,9 @@ export default function App() {
               <h1 className="font-display text-4xl font-semibold leading-tight text-canvas sm:text-5xl lg:text-6xl">
                 Residential renovations managed end to end.
               </h1>
-              <p className="max-w-2xl text-lg text-steel">
-                Veteran-owned general contractor focused on sequencing, scope control, and finish quality. Hidden doors and complex millwork are part of the toolkit, not the whole story.
-              </p>
+                    <p className="max-w-2xl text-lg text-steel">
+                      Veteran-owned general contractor delivering residential renovations with disciplined planning and finish-forward execution at {BRAND_MARK}.
+                    </p>
               <div className="flex flex-wrap gap-3 text-sm text-steel">
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Renovations & remodels</span>
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Project planning & sequencing</span>
@@ -256,7 +261,7 @@ export default function App() {
                     <h3 className="font-display text-lg font-semibold text-canvas">{project.name}</h3>
                     <span className="rounded-full bg-redwood/20 px-3 py-1 text-xs font-semibold text-redwood">Case</span>
                   </div>
-                  <p className="mt-3 text-sm text-steel">{project.summary}</p>
+                  <p className="mt-3 text-sm text-steel">{project.summary} Delivered by {BRAND_MARK}.</p>
                   <div className="mt-auto pt-4 text-sm font-semibold text-redwood">View details →</div>
                 </article>
               ))}
@@ -289,7 +294,7 @@ export default function App() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Start a project</p>
                 <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Tell us about your space</h2>
                 <p className="text-sm text-steel">
-                  We reply within one business day. This form routes straight to the shop. Share scope, dimensions, timing, and any drawings - we will return with a plan.
+                  We reply within one business day. This form routes straight to the shop at {BRAND_MARK}. Share scope, dimensions, timing, and any drawings - we will return with a plan.
                 </p>
                 <ul className="grid gap-3 text-sm text-steel">
                   <li className="flex items-center gap-2">
@@ -420,9 +425,9 @@ export default function App() {
         <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2 text-canvas">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
-              <span className="font-display text-sm font-semibold">H</span>
+              <img src={logoMark} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
             </div>
-            <span>Helix Craftworks</span>
+            <span>{BRAND_MARK}</span>
           </div>
           <div className="flex flex-wrap gap-4">
             <a href="#services">Services</a>

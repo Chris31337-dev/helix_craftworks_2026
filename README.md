@@ -1,6 +1,6 @@
-# Helix Craftworks Site
+# Helix Craftworks® Site
 
-A Vite + React + Tailwind one-page site for Helix Craftworks (hidden doors, built-ins, finish carpentry), wired for Netlify Forms.
+A Vite + React + Tailwind one-page site for Helix Craftworks® (hidden doors, built-ins, finish carpentry), wired for Netlify Forms.
 
 ## Prerequisites
 - Node.js 18+
