@@ -284,17 +284,6 @@ function HelixServicesPage({
                 </a>
                 <div className="flex flex-col text-xs text-steel">
                   <span className="text-canvas">Veteran-owned. Same leadership as Helix Craftworks®.</span>
-                  <div className="mt-2 inline-flex items-center gap-2">
-                      <a
-                        href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-full border border-sky-300/30 bg-sky-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-canvas"
-                      >
-                        Client Hub
-                      </a>
-                    <span className="text-[11px] text-steel">Already a client? Log in to Client Hub to make a request.</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1474,6 +1463,17 @@ export default function App() {
                     Veteran-owned. Detail-forward execution.
                   </li>
                 </ul>
+                <div className="flex flex-col text-xs text-steel">
+                  <a
+                    href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-fit items-center gap-2 rounded-full border border-sky-300/30 bg-sky-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-canvas"
+                  >
+                    Client Hub
+                  </a>
+                  <span className="mt-1 text-[11px]">Already a client? Log in to Client Hub to make a request.</span>
+                </div>
               </div>
 
               <form
