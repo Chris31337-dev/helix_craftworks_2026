@@ -6,6 +6,7 @@ const BRAND = 'Helix Craftworks';
 const BRAND_MARK = `${BRAND}®`;
 const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}®`;
 const HEADER_LOGO_SRC = headerLogo;
+const DEFAULT_PROJECT_TYPE = 'Kitchen renovation';
 
 const services = [
   {
@@ -37,6 +38,11 @@ const services = [
     title: 'Repairs, Upgrades & Phased Work',
     copy: 'Targeted improvements and phased renovations planned to integrate cleanly with future work and long-term goals.',
     href: '/repairs-upgrades',
+  },
+  {
+    title: 'Helix Services (Maintenance & Repairs)',
+    copy: 'Preventive maintenance and responsive repairs delivered by Helix Services™ to keep systems reliable and downtime low.',
+    href: '/helix-services',
   },
 ];
 
@@ -176,9 +182,7 @@ function StorePage({ year }: Readonly<{ year: number }>) {
             href="https://store.helixcraftworks.com"
             className="mt-6 inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
             target="_blank"
-            rel="noreferrer"
-          >
-            Go to store
+                    <option>{DEFAULT_PROJECT_TYPE}</option>
           </a>
         </section>
       </main>
@@ -227,6 +231,7 @@ function Header() {
       </a>
       <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
         <a href="/#services">Services</a>
+        <a href="/helix-services">Helix Services</a>
         <a href="/#process">Process</a>
         <a href="/careers">Careers</a>
         <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
@@ -249,6 +254,7 @@ function Footer({ year }: Readonly<{ year: number }>) {
         </div>
         <div className="flex flex-wrap items-center gap-4 text-steel">
           <a href="/#services">Services</a>
+          <a href="/helix-services">Helix Services</a>
           <a href="/#process">Process</a>
           <a href="/careers">Careers</a>
           <a href="/#contact">Request a consult</a>
@@ -328,6 +334,61 @@ const standalonePages = {
       },
     ],
   },
+  '/helix-services': {
+    title: 'Helix Services (Maintenance & Repairs)',
+    intro: 'Preventive maintenance programs and responsive repairs delivered by Helix Craftworks® dba Helix Services™ for residential and light commercial systems.',
+    ctaLabel: 'Request service',
+    sections: [
+      {
+        heading: 'Overview',
+        items: [
+          'Reliability-first maintenance plans tailored to the specific systems on site',
+          'Emphasis on early detection for condensate, venting, and control issues',
+          'Flat-rate programs that keep annual costs predictable',
+        ],
+      },
+      {
+        heading: 'Response & support',
+        items: [
+          'Next-day response included for covered service issues',
+          'Same-day response available as an annual upgrade (when available)',
+          'Emergency lockouts and safety shutdowns prioritized',
+        ],
+      },
+      {
+        heading: 'Service schedule',
+        items: [
+          'Seasonal visits calibrated to the equipment (e.g., fall heating service, spring system checks)',
+          'Condensate-focused cold-weather checks when freezing risk is highest',
+          'Documented condition notes after each visit',
+        ],
+      },
+      {
+        heading: 'Investment starting points',
+        items: [
+          'Program pricing set per system and scope; example HVAC preventive maintenance starts around $325 per unit annually',
+          'Includes two full preventive maintenance visits per year plus priority troubleshooting support',
+          'Same-day response upgrade available as an annual add-on',
+        ],
+      },
+      {
+        heading: 'Not included in maintenance visits',
+        items: [
+          'Major component replacement, refrigerant service, or leak detection',
+          'Duct modifications, balancing, or code upgrades unrelated to maintenance',
+          'Compressor diagnostics beyond start-and-run confirmation',
+        ],
+      },
+      {
+        heading: 'Why this approach works',
+        items: [
+          'Condensate-sensitive and zoned systems stay stable with planned checks',
+          'Older multi-story buildings avoid small issues snowballing into downtime',
+          'Programs prioritize failure prevention over reactive calls',
+        ],
+      },
+    ],
+  },
   '/terms': {
     title: 'Terms & Conditions',
     intro: 'These terms outline how Helix Craftworks engages with site visitors and prospective clients. Please review before contacting us.',
@@ -372,6 +433,7 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [snapshotIndex, setSnapshotIndex] = useState(0);
   const [path, setPath] = useState<string>(() => (globalThis.window === undefined ? '/' : globalThis.window.location.pathname));
+  const [projectType, setProjectType] = useState<string>(DEFAULT_PROJECT_TYPE);
 
   const currentSnapshot = deliverySnapshots[snapshotIndex];
 
@@ -420,9 +482,9 @@ export default function App() {
             <div className="pt-2">
               <a
                 href="/#contact"
-                  className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
               >
-                Request a walkthrough
+                {standalonePage.ctaLabel ?? 'Request a walkthrough'}
               </a>
             </div>
           </section>
@@ -467,6 +529,7 @@ export default function App() {
 
       if (response.ok || (response.status >= 300 && response.status < 400)) {
         setStatus('success');
+        setProjectType(DEFAULT_PROJECT_TYPE);
         form.reset();
       } else {
         setStatus('error');
@@ -487,6 +550,8 @@ export default function App() {
     setSnapshotIndex((prev) => (prev + 1) % deliverySnapshots.length);
   }
 
+  const isServicesLead = projectType === 'Preventive maintenance' || projectType === 'Repairs / service visit';
+
   return (
     <div className="min-h-screen bg-charcoal text-canvas">
       <div className="absolute inset-0 -z-10 bg-radial-spot" aria-hidden />
@@ -504,6 +569,7 @@ export default function App() {
           </a>
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
             <a href="#services">Services</a>
+            <a href="/helix-services">Helix Services</a>
             <a href="#process">Process</a>
             <a href="/careers">Careers</a>
             <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
@@ -527,6 +593,7 @@ export default function App() {
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Project planning & sequencing</span>
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Finish carpentry & millwork</span>
                 <span className="rounded-full border border-canvas/10 px-3 py-2">Specialty details as needed</span>
+                <span className="rounded-full border border-canvas/10 px-3 py-2">Preventive maintenance & repairs</span>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 <a
@@ -689,6 +756,7 @@ export default function App() {
                 className="space-y-4 rounded-2xl border border-canvas/10 bg-charcoal/80 p-6 shadow-card"
               >
                 <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="leadType" value={isServicesLead ? 'Helix Services' : 'Helix Craftworks'} />
                 <p className="hidden">
                   <label>
                     Don't fill this out if you're human: <input name="bot-field" />
@@ -744,19 +812,87 @@ export default function App() {
                   <select
                     name="projectType"
                     className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
-                    defaultValue="Kitchen renovation"
+                    value={projectType}
+                    onChange={(event) => setProjectType(event.target.value)}
                   >
-                    <option>Kitchen renovation</option>
+                    <option>{DEFAULT_PROJECT_TYPE}</option>
                     <option>Bathroom renovation</option>
                     <option>Basement / lower level</option>
                     <option>Whole-home / multi-room</option>
                     <option>Structural / framing work</option>
                     <option>Finish carpentry & built-ins</option>
                     <option>Repairs / phased upgrades</option>
+                    <option>Preventive maintenance</option>
+                    <option>Repairs / service visit</option>
                     <option>Specialty detail (concealed storage / hidden door)</option>
                     <option>Not sure yet (help me scope it)</option>
                   </select>
                 </label>
+                {isServicesLead ? (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="text-sm text-steel">
+                      System / asset type
+                      <select
+                        name="assetType"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                        defaultValue="HVAC"
+                      >
+                        <option>HVAC</option>
+                        <option>Plumbing</option>
+                        <option>Electrical</option>
+                        <option>Envelope / moisture</option>
+                        <option>Multi-trade</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel">
+                      Recurrence
+                      <select
+                        name="recurrence"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                        defaultValue="One-time service"
+                      >
+                        <option>One-time service</option>
+                        <option>Seasonal (spring/fall)</option>
+                        <option>Quarterly</option>
+                        <option>Annual</option>
+                        <option>Not sure yet</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel">
+                      Response tier
+                      <select
+                        name="responseTier"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                        defaultValue="Standard next-day"
+                      >
+                        <option>Standard next-day</option>
+                        <option>Same-day upgrade</option>
+                        <option>Flex (schedule with project)</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel">
+                      Urgency
+                      <select
+                        name="urgency"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                        defaultValue="Routine"
+                      >
+                        <option>Routine</option>
+                        <option>Urgent (48 hours)</option>
+                        <option>Outage / safety issue</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel sm:col-span-2">
+                      Access or site notes
+                      <input
+                        name="accessNotes"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
+                        placeholder="Site contact, access hours, lockbox, roof/ladder, parking."
+                      />
+                    </label>
+                  </div>
+                ) : null}
                 <label className="text-sm text-steel">
                   Budget range
                   <select
@@ -820,6 +956,15 @@ export default function App() {
                   </li>
                 </ul>
               </article>
+              <article className="rounded-2xl border border-canvas/10 bg-charcoal/60 p-5 shadow-card">
+                <h3 className="font-display text-lg font-semibold text-canvas">Helix Craftworks vs. Helix Services</h3>
+                <p className="mt-2 text-xs text-steel">Project builds stay with Helix Craftworks. Preventive maintenance and repairs run through Helix Services.</p>
+                <ul className="mt-3 space-y-2 text-sm text-steel">
+                  <li className="flex gap-2"><span className="text-redwood">•</span><span>Helix Craftworks: renovations, remodels, sequencing, finish work.</span></li>
+                  <li className="flex gap-2"><span className="text-redwood">•</span><span>Helix Services: preventive maintenance plans and service visits.</span></li>
+                  <li className="flex gap-2"><span className="text-redwood">•</span><span>Same leadership, tailored workflows for each type of request.</span></li>
+                </ul>
+              </article>
             </div>
           </section>
 
@@ -846,6 +991,7 @@ export default function App() {
             </div>
             <div className="flex flex-wrap gap-4 text-steel">
               <a href="#services">Services</a>
+              <a href="/helix-services">Helix Services</a>
               <a href="#process">Process</a>
               <a href="/careers">Careers</a>
               <a href="#contact">Request a consult</a>
