@@ -8,6 +8,13 @@ const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}®`;
 const HEADER_LOGO_SRC = headerLogo;
 const DEFAULT_PROJECT_TYPE = 'Kitchen renovation';
 
+type StandalonePage = {
+  title: string;
+  intro: string;
+  sections: { heading: string; items: string[] }[];
+  ctaLabel?: string;
+};
+
 const services = [
   {
     title: 'Renovations & Remodels',
@@ -152,45 +159,6 @@ const faqs = [
   },
 ];
 
-const projects = [
-  {
-    name: 'Whole-home refresh',
-    summary: 'Sequenced trades, updated mechanicals, and finish carpentry that ties new spaces back to the original character.',
-  },
-  {
-    name: 'Kitchen + mudroom',
-    summary: 'Renovation with site protection, cabinet alignment, integrated lighting, and durable storage for daily use.',
-  },
-  {
-    name: 'Living room millwork',
-    summary: 'Beam cladding, crown, and paneling with concealed storage; specialty hardware set flush and true.',
-  },
-];
-
-function StorePage({ year }: Readonly<{ year: number }>) {
-  return (
-    <Shell>
-      <Header />
-      <main className="mt-16 space-y-10 sm:space-y-14">
-        <section className="rounded-3xl border border-canvas/10 bg-canvas/5 p-8 shadow-card shadow-glow/30 sm:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Loom &amp; Lathe</p>
-          <h1 className="mt-2 font-display text-3xl font-semibold text-canvas sm:text-4xl">Helix Craftworks Store</h1>
-          <p className="mt-4 max-w-2xl text-sm text-steel">
-            Apparel and small-batch goods built with the same attention to detail we bring to every renovation. Visit the store to browse and order.
-          </p>
-          <a
-            href="https://store.helixcraftworks.com"
-            className="mt-6 inline-flex items-center justify-center rounded-full bg-redwood px-5 py-3 text-sm font-semibold text-canvas shadow-glow transition hover:-translate-y-0.5"
-            target="_blank"
-                    <option>{DEFAULT_PROJECT_TYPE}</option>
-          </a>
-        </section>
-      </main>
-      <Footer year={year} />
-    </Shell>
-  );
-}
-
 function Divider() {
   return <div className="h-px w-full bg-canvas/10" />;
 }
@@ -277,7 +245,7 @@ function Footer({ year }: Readonly<{ year: number }>) {
   );
 }
 
-const standalonePages = {
+const standalonePages: Partial<Record<string, StandalonePage>> = {
   '/renovations': {
     title: 'Renovations & Remodels',
     intro: 'Full-scope residential renovations managed end to end, from early planning and permits through final inspection and close-out.',
@@ -449,11 +417,7 @@ export default function App() {
     return <CareersPage />;
   }
   
-  if (path === '/store') {
-    return <StorePage year={year} />;
-  }
-
-  const standalonePage = standalonePages[path as keyof typeof standalonePages];
+  const standalonePage = standalonePages[path];
 
   if (standalonePage) {
     return (

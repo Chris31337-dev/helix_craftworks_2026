@@ -68,9 +68,9 @@ function Footer({ year }: Readonly<{ year: number }>) {
 
 function loadEcwid(): void {
   const initBrowser = () => {
-    if (typeof window === 'undefined') return;
+    if (globalThis.window === undefined) return;
 
-    const w = window as any;
+    const w = globalThis as any;
 
     if (w.xProductBrowser) {
       w.xProductBrowser('categoriesPerRow=3', 'views=grid(20,3) list(60) table(60)', 'categoryView=grid', 'searchView=list', 'id=my-store-116136023');
@@ -103,7 +103,7 @@ function loadEcwid(): void {
   script.src = 'https://app.ecwid.com/script.js?116136023&data_platform=code&data_date=2025-12-17';
   script.defer = true;
   script.async = true;
-  script.setAttribute('data-cfasync', 'false');
+  script.dataset.cfasync = 'false';
   script.addEventListener('load', () => {
     script.dataset.loaded = 'true';
     initBrowser();
