@@ -47,7 +47,7 @@ const services = [
     href: '/repairs-upgrades',
   },
   {
-    title: 'Helix Services (Maintenance & Repairs)',
+    title: 'Helix Services™ (Maintenance & Repairs)',
     copy: 'Preventive maintenance and responsive repairs delivered by Helix Services™ to keep systems reliable and downtime low.',
     href: '/helix-services',
   },
@@ -175,6 +175,446 @@ function SectionHeading({ title, eyebrow, copy }: Readonly<{ title: string; eyeb
   );
 }
 
+function SnapshotStats({ snapshot }: Readonly<{ snapshot: (typeof deliverySnapshots)[number] }>) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      {snapshot.stats.map((item) => (
+        <div key={`${snapshot.title}-${item.label}`} className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 shadow-glow/30">
+          <p className="text-2xl font-semibold text-canvas">
+            <span className="text-redwood">{item.value}</span>
+          </p>
+          <p className="mt-2 text-sm text-steel">{item.label}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ServicesCards() {
+  return (
+    <>
+      {services.map((service) => (
+        <article key={service.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card shadow-glow/40">
+          <h3 className="font-display text-lg font-semibold text-canvas">{service.title}</h3>
+          <p className="mt-3 text-sm text-steel">{service.copy}</p>
+          <a href={service.href} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-redwood">
+            <span>Explore</span>
+            <span aria-hidden>→</span>
+          </a>
+        </article>
+      ))}
+    </>
+  );
+}
+
+function StepCards() {
+  return (
+    <>
+      {steps.map((step) => (
+        <article key={step.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-5 shadow-card">
+          <div className="flex items-center justify-between text-sm text-steel">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em]">{step.label}</span>
+            <span className="h-[1px] flex-1 bg-canvas/10" aria-hidden />
+          </div>
+          <h3 className="mt-4 font-display text-lg font-semibold text-canvas">{step.title}</h3>
+          <p className="mt-2 text-sm text-steel">{step.copy}</p>
+        </article>
+      ))}
+    </>
+  );
+}
+
+function FaqItems() {
+  return (
+    <>
+      {faqs.map((item) => (
+        <article key={item.q} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-5 shadow-card">
+          <h3 className="font-display text-base font-semibold text-canvas">{item.q}</h3>
+          <p className="mt-2 text-sm text-steel">{item.a}</p>
+        </article>
+      ))}
+    </>
+  );
+}
+
+function HelixServicesPage({
+  year,
+  status,
+  errorMessage,
+  handleSubmit,
+  projectType,
+  setProjectType,
+  isServicesLead,
+}: Readonly<{
+  year: number;
+  status: 'idle' | 'sending' | 'success' | 'error';
+  errorMessage: string;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  projectType: string;
+  setProjectType: (value: string) => void;
+  isServicesLead: boolean;
+}>) {
+  const accentButton = 'bg-sky-400 text-slate-900 shadow-glow';
+  const accentSoft = 'bg-slate-800/80 border-canvas/10';
+
+  return (
+    <Shell>
+      <Header />
+      <main className="mt-16 flex flex-col gap-12 sm:gap-16">
+        <section className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-slate-900 via-slate-800 to-charcoal p-8 shadow-card shadow-glow/30 sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="space-y-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Helix Services™ · Maintenance & Repairs</p>
+              <h1 className="font-display text-4xl font-semibold leading-tight text-canvas sm:text-5xl">Preventive maintenance with the same discipline as our builds.</h1>
+              <p className="max-w-2xl text-sm text-steel">
+                Helix Services™ delivers reliability-first preventive maintenance and responsive repairs for the systems that keep your space running. Zoned controls, condensate management, and finish-sensitive areas are handled with the same care we bring to every renovation.
+              </p>
+              <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">HVAC & airflow</span>
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Moisture & envelope</span>
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Plumbing & electrical</span>
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Light commercial</span>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                <a
+                  href="#contact"
+                  className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold ${accentButton} transition hover:-translate-y-0.5`}
+                >
+                  Request service
+                </a>
+                <div className="flex flex-col text-xs text-steel">
+                  <span className="text-canvas">Veteran-owned. Same leadership as Helix Craftworks®.</span>
+                  <div className="mt-2 inline-flex items-center gap-2">
+                      <a
+                        href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full border border-sky-300/30 bg-sky-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-canvas"
+                      >
+                        Client Hub
+                      </a>
+                    <span className="text-[11px] text-steel">Already a client? Log in to Client Hub to make a request.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[{
+                title: 'Preventive programs',
+                copy: 'Seasonal and annual plans calibrated to your equipment: zoned systems, condensate-sensitive furnaces, humidity-critical spaces.',
+              }, {
+                title: 'Responsive repairs',
+                copy: 'Service visits that prioritize safety and uptime with clear approvals before corrective work begins.',
+              }, {
+                title: 'Response tiers',
+                copy: 'Standard next-day included. Same-day upgrade available when capacity allows. Safety lockouts prioritized.',
+              }, {
+                title: 'Documentation',
+                copy: 'Condition notes after each visit, with recommendations that anticipate future phases or upgrades.',
+              }].map((card) => (
+                <article key={card.title} className={`rounded-2xl border ${accentSoft} p-4 shadow-card`}>
+                  <p className="font-display text-base font-semibold text-canvas">{card.title}</p>
+                  <p className="mt-2 text-sm text-steel">{card.copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-6 rounded-3xl border border-canvas/10 bg-canvas/5 p-8 shadow-card shadow-glow/30 sm:p-10">
+          <SectionHeading eyebrow="Offerings" title="What Helix Services™ delivers" copy="Programs tuned to system type and building needs." />
+          <div className="grid gap-6 md:grid-cols-3">
+            {[{
+              title: 'Preventive maintenance programs',
+              items: ['Seasonal visits (spring/fall) for combustion and condensate-heavy systems', 'Targeted cold-weather condensate checks', 'Condition notes and next-step recommendations'],
+            }, {
+              title: 'Service visits & repairs',
+              items: ['Diagnostics with clear approvals before corrective work', 'Priority for safety lockouts and outage scenarios', 'Minor corrective work performed on approval when parts are on-hand'],
+            }, {
+              title: 'Light commercial & specialty',
+              items: ['Small offices, retail, and mixed-use buildings', 'Zoned control verification and airflow sanity checks', 'Moisture and envelope risk assessments'],
+            }].map((block) => (
+              <article key={block.title} className="rounded-2xl border border-canvas/10 bg-charcoal/70 p-5 shadow-card">
+                <h3 className="font-display text-lg font-semibold text-canvas">{block.title}</h3>
+                <ul className="mt-3 space-y-2 text-sm text-steel">
+                  {block.items.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="text-sky-300">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="space-y-4 rounded-3xl border border-canvas/10 bg-charcoal/80 p-6 shadow-card">
+            <SectionHeading eyebrow="Response" title="Support tiers" copy="Reliability first, with upgrades when timing is critical." />
+            <div className="grid gap-4 md:grid-cols-2">
+              {[{ label: 'Included', desc: 'Next-day response for covered issues, priority scheduling for safety lockouts.' }, { label: 'Upgrade', desc: 'Same-day response when capacity allows; ideal for critical spaces or outages.' }, { label: 'Communication', desc: 'Direct contact with the tech lead; approvals captured before corrective work.' }, { label: 'Documentation', desc: 'Status indicators, notes, and recommended follow-ups after each visit.' }].map((item) => (
+                <div key={item.label} className="rounded-xl border border-canvas/10 bg-canvas/5 p-4 text-sm text-steel">
+                  <p className="font-semibold text-canvas">{item.label}</p>
+                  <p className="mt-2">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+          <article className="space-y-4 rounded-3xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
+            <SectionHeading eyebrow="Scope" title="What we check" copy="Example HVAC program steps for a zoned, condensate-sensitive system." />
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-xl border border-canvas/10 bg-charcoal/70 p-4 text-sm text-steel">
+                <p className="font-semibold text-canvas">Fall heating service</p>
+                <ul className="mt-2 space-y-1">
+                  <li>Thermostat and zone call logic verification</li>
+                  <li>Burner, ignition, inducer, and safety circuit checks</li>
+                  <li>Vent/condensate inspection and flush as needed</li>
+                  <li>Blower, filter, and temperature rise confirmation</li>
+                </ul>
+              </div>
+              <div className="rounded-xl border border-canvas/10 bg-charcoal/70 p-4 text-sm text-steel">
+                <p className="font-semibold text-canvas">Spring system service</p>
+                <ul className="mt-2 space-y-1">
+                  <li>Zone damper operation and control board status</li>
+                  <li>Condensate pan/trap inspection post-heating season</li>
+                  <li>Cooling call readiness (Y1/Y2) where applicable</li>
+                  <li>Visual coil, line set insulation, and disconnect check</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-3xl border border-canvas/10 bg-charcoal/70 p-6 shadow-card">
+            <SectionHeading eyebrow="Not included" title="What’s outside maintenance" />
+            <ul className="mt-3 space-y-2 text-sm text-steel">
+              <li className="flex gap-2"><span className="text-sky-300">•</span><span>Major component replacement or compressor diagnostics beyond start-and-run confirmation</span></li>
+              <li className="flex gap-2"><span className="text-sky-300">•</span><span>Refrigerant service, leak detection, or duct balancing/modifications</span></li>
+              <li className="flex gap-2"><span className="text-sky-300">•</span><span>Code upgrades unrelated to maintenance scope</span></li>
+            </ul>
+          </article>
+          <article className="rounded-3xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
+            <SectionHeading eyebrow="Why it works" title="Built for reliability" />
+            <ul className="mt-3 space-y-2 text-sm text-steel">
+              <li className="flex gap-2"><span className="text-sky-300">•</span><span>Condensate-sensitive systems get scheduled attention before failures</span></li>
+              <li className="flex gap-2"><span className="text-sky-300">•</span><span>Zoned control checks prevent small logic issues from compounding</span></li>
+              <li className="flex gap-2"><span className="text-sky-300">•</span><span>Notes after each visit keep future upgrades predictable</span></li>
+            </ul>
+          </article>
+        </section>
+
+        <section id="contact" className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-slate-900 via-slate-800 to-charcoal p-8 shadow-glow sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="space-y-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Schedule service</p>
+              <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Tell us what needs attention</h2>
+              <p className="text-sm text-steel">
+                This goes straight to the Helix Services™ team lead. Share the systems involved, access notes, and timing. We’ll confirm the right response tier and schedule.
+              </p>
+              <div className="flex flex-wrap gap-3 text-sm text-steel">
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">HVAC & airflow</span>
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Moisture / condensate</span>
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Plumbing / electrical</span>
+                <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Light commercial</span>
+              </div>
+              <div className="flex flex-col text-xs text-steel">
+                <a
+                  href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-fit items-center gap-2 rounded-full border border-sky-300/30 bg-sky-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-canvas"
+                >
+                  Client Hub
+                </a>
+                <span className="mt-1 text-[11px]">Already a client? Log in to Client Hub to make a request.</span>
+              </div>
+            </div>
+
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              action="/"
+              onSubmit={handleSubmit}
+              className="space-y-4 rounded-2xl border border-canvas/10 bg-charcoal/80 p-6 shadow-card"
+            >
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="leadType" value={isServicesLead ? 'Helix Services' : 'Helix Craftworks'} />
+              <p className="hidden">
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="text-sm text-steel">
+                  Name
+                  <input
+                    required
+                    name="name"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                    placeholder="Alex Rivera"
+                  />
+                </label>
+                <label className="text-sm text-steel">
+                  Email
+                  <input
+                    required
+                    type="email"
+                    name="email"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                    placeholder="you@work.com"
+                  />
+                </label>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="text-sm text-steel">
+                  Location (city/town)
+                  <input
+                    name="location"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                    placeholder="Philadelphia, PA"
+                  />
+                </label>
+                <label className="text-sm text-steel">
+                  When do you need help?
+                  <select
+                    name="startTimeframe"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                    defaultValue="ASAP / next 30 days"
+                  >
+                    <option>ASAP / next 30 days</option>
+                    <option>1–3 months</option>
+                    <option>3–6 months</option>
+                    <option>6+ months</option>
+                    <option>Not sure yet</option>
+                  </select>
+                </label>
+              </div>
+              <label className="text-sm text-steel">
+                Request type
+                <select
+                  name="projectType"
+                  className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                  value={projectType}
+                  onChange={(event) => setProjectType(event.target.value)}
+                >
+                  <option>Preventive maintenance</option>
+                  <option>Repairs / service visit</option>
+                  <option>HVAC / airflow</option>
+                  <option>Moisture / condensate</option>
+                  <option>Plumbing / electrical</option>
+                  <option>Light commercial</option>
+                  <option>Not sure yet (help me scope it)</option>
+                </select>
+              </label>
+              {isServicesLead ? (
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="text-sm text-steel">
+                    System / asset type
+                    <select
+                      name="assetType"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                      defaultValue="HVAC"
+                    >
+                      <option>HVAC</option>
+                      <option>Plumbing</option>
+                      <option>Electrical</option>
+                      <option>Envelope / moisture</option>
+                      <option>Multi-trade</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                  <label className="text-sm text-steel">
+                    Recurrence
+                    <select
+                      name="recurrence"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                      defaultValue="One-time service"
+                    >
+                      <option>One-time service</option>
+                      <option>Seasonal (spring/fall)</option>
+                      <option>Quarterly</option>
+                      <option>Annual</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </label>
+                  <label className="text-sm text-steel">
+                    Response tier
+                    <select
+                      name="responseTier"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                      defaultValue="Standard next-day"
+                    >
+                      <option>Standard next-day</option>
+                      <option>Same-day upgrade</option>
+                      <option>Flex (schedule with project)</option>
+                    </select>
+                  </label>
+                  <label className="text-sm text-steel">
+                    Urgency
+                    <select
+                      name="urgency"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                      defaultValue="Routine"
+                    >
+                      <option>Routine</option>
+                      <option>Urgent (48 hours)</option>
+                      <option>Outage / safety issue</option>
+                    </select>
+                  </label>
+                  <label className="text-sm text-steel sm:col-span-2">
+                    Access or site notes
+                    <input
+                      name="accessNotes"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                      placeholder="Site contact, access hours, lockbox, roof/ladder, parking."
+                    />
+                  </label>
+                </div>
+              ) : null}
+              <label className="text-sm text-steel">
+                Request details
+                <textarea
+                  required
+                  name="message"
+                  rows={4}
+                  className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                  placeholder="Systems involved, symptoms, timing, access notes, and any photos/links."
+                />
+              </label>
+              <button
+                type="submit"
+                disabled={status === 'sending' || status === 'success'}
+                className={`w-full rounded-full px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 ${accentButton}`}
+              >
+                Request service
+              </button>
+              {status === 'success' ? (
+                <output className="rounded-lg border border-sky-300/30 bg-sky-300/10 px-3 py-2 text-sm text-canvas" aria-live="polite">
+                  Thanks for reaching out. We will reply within one business day.
+                </output>
+              ) : null}
+              {status === 'error' ? (
+                <div className="rounded-lg border border-redwood/40 bg-redwood/10 px-3 py-2 text-sm text-redwood" role="alert" aria-live="assertive">
+                  {errorMessage || 'Something went wrong. Please try again.'}
+                </div>
+              ) : null}
+              <p className="text-xs text-steel">
+                By submitting, you agree to let us contact you about this request. We keep conversations confidential.
+              </p>
+            </form>
+          </div>
+        </section>
+      </main>
+      <Footer year={year} />
+    </Shell>
+  );
+}
+
 function Shell({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="min-h-screen bg-charcoal text-canvas">
@@ -199,11 +639,18 @@ function Header() {
       </a>
       <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
         <a href="/#services">Services</a>
-        <a href="/helix-services">Helix Services</a>
         <a href="/#process">Process</a>
         <a href="/careers">Careers</a>
         <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
           Request a consult
+        </a>
+        <a
+          href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full border border-sky-300/30 bg-sky-300/10 px-4 py-2 text-sm font-semibold text-canvas shadow-glow/40 transition hover:-translate-y-0.5"
+        >
+          Client Hub
         </a>
       </nav>
     </header>
@@ -228,12 +675,16 @@ function Footer({ year }: Readonly<{ year: number }>) {
           <a href="/#contact">Request a consult</a>
         </div>
       </div>
-      <div className="flex flex-col items-start gap-1 sm:items-end">
-        <div className="flex flex-col leading-tight text-right sm:text-right">
+      <div className="flex flex-col items-start gap-3 sm:items-end sm:text-right">
+        <div className="flex flex-col leading-tight">
           <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
-            Loom & Lathe
+            Loom & Lathe™
           </a>
           <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
+        </div>
+        <div className="flex flex-col leading-tight">
+          <a href="/helix-services" className="text-canvas">Helix Services™</a>
+          <span className="text-xs text-steel">Preventive maintenance and repairs, delivered by Helix</span>
         </div>
         <div className="flex gap-4 text-steel">
           <a href="/terms">Terms</a>
@@ -302,61 +753,6 @@ const standalonePages: Partial<Record<string, StandalonePage>> = {
       },
     ],
   },
-  '/helix-services': {
-    title: 'Helix Services (Maintenance & Repairs)',
-    intro: 'Preventive maintenance programs and responsive repairs delivered by Helix Craftworks® dba Helix Services™ for residential and light commercial systems.',
-    ctaLabel: 'Request service',
-    sections: [
-      {
-        heading: 'Overview',
-        items: [
-          'Reliability-first maintenance plans tailored to the specific systems on site',
-          'Emphasis on early detection for condensate, venting, and control issues',
-          'Flat-rate programs that keep annual costs predictable',
-        ],
-      },
-      {
-        heading: 'Response & support',
-        items: [
-          'Next-day response included for covered service issues',
-          'Same-day response available as an annual upgrade (when available)',
-          'Emergency lockouts and safety shutdowns prioritized',
-        ],
-      },
-      {
-        heading: 'Service schedule',
-        items: [
-          'Seasonal visits calibrated to the equipment (e.g., fall heating service, spring system checks)',
-          'Condensate-focused cold-weather checks when freezing risk is highest',
-          'Documented condition notes after each visit',
-        ],
-      },
-      {
-        heading: 'Investment starting points',
-        items: [
-          'Program pricing set per system and scope; example HVAC preventive maintenance starts around $325 per unit annually',
-          'Includes two full preventive maintenance visits per year plus priority troubleshooting support',
-          'Same-day response upgrade available as an annual add-on',
-        ],
-      },
-      {
-        heading: 'Not included in maintenance visits',
-        items: [
-          'Major component replacement, refrigerant service, or leak detection',
-          'Duct modifications, balancing, or code upgrades unrelated to maintenance',
-          'Compressor diagnostics beyond start-and-run confirmation',
-        ],
-      },
-      {
-        heading: 'Why this approach works',
-        items: [
-          'Condensate-sensitive and zoned systems stay stable with planned checks',
-          'Older multi-story buildings avoid small issues snowballing into downtime',
-          'Programs prioritize failure prevention over reactive calls',
-        ],
-      },
-    ],
-  },
   '/terms': {
     title: 'Terms & Conditions',
     intro: 'These terms outline how Helix Craftworks engages with site visitors and prospective clients. Please review before contacting us.',
@@ -401,7 +797,14 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [snapshotIndex, setSnapshotIndex] = useState(0);
   const [path, setPath] = useState<string>(() => (globalThis.window === undefined ? '/' : globalThis.window.location.pathname));
-  const [projectType, setProjectType] = useState<string>(DEFAULT_PROJECT_TYPE);
+  const [projectType, setProjectType] = useState<string>(() => {
+    if (globalThis.window?.location?.pathname === '/helix-services') {
+      return 'Preventive maintenance';
+    }
+    return DEFAULT_PROJECT_TYPE;
+  });
+  const [budgetChoice, setBudgetChoice] = useState<string>('$10k–$25k');
+  const [customBudget, setCustomBudget] = useState('');
 
   const currentSnapshot = deliverySnapshots[snapshotIndex];
 
@@ -413,11 +816,392 @@ export default function App() {
     return () => globalThis.removeEventListener('popstate', handlePopstate);
   }, []);
 
+  useEffect(() => {
+    if (path === '/helix-services') {
+      setProjectType('Preventive maintenance');
+    }
+  }, [path]);
+
+  const standalonePage = standalonePages[path];
+  const isHelixServicesPage = path === '/helix-services';
+  const serviceTypes = useMemo(
+    () => [
+      'Preventive maintenance',
+      'Repairs / service visit',
+      'HVAC / airflow',
+      'Moisture / condensate',
+      'Plumbing / electrical',
+      'Light commercial',
+    ],
+    [],
+  );
+  const isServicesLead = serviceTypes.includes(projectType);
+
   if (path === '/careers') {
     return <CareersPage />;
   }
-  
-  const standalonePage = standalonePages[path];
+
+  if (isHelixServicesPage) {
+    const accentButton = 'bg-sky-400 text-slate-900 shadow-glow';
+    const accentSoft = 'bg-slate-800/80 border-canvas/10';
+
+    return (
+      <Shell>
+        <Header />
+        <main className="mt-16 flex flex-col gap-12 sm:gap-16">
+          <section className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-slate-900 via-slate-800 to-charcoal p-8 shadow-card shadow-glow/30 sm:p-10">
+            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="space-y-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Helix Services™ · Maintenance & Repairs</p>
+                <h1 className="font-display text-4xl font-semibold leading-tight text-canvas sm:text-5xl">Preventive maintenance with the same discipline as our builds.</h1>
+                <p className="max-w-2xl text-sm text-steel">
+                  Helix Services™ delivers reliability-first preventive maintenance and responsive repairs for the systems that keep your space running. Zoned controls, condensate management, and finish-sensitive areas are handled with the same care we bring to every renovation.
+                </p>
+                <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-steel">
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">HVAC & airflow</span>
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Moisture & envelope</span>
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Plumbing & electrical</span>
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Light commercial</span>
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                  <a
+                    href="#contact"
+                    className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold ${accentButton} transition hover:-translate-y-0.5`}
+                  >
+                    Request service
+                  </a>
+                  <div className="flex flex-col text-xs text-steel">
+                    <span className="text-canvas">Veteran-owned. Same leadership as Helix Craftworks®.</span>
+                    <div className="mt-2 inline-flex items-center gap-2">
+                      <a
+                        href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-full border border-sky-300/30 bg-sky-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-canvas"
+                      >
+                        Client Hub
+                      </a>
+                      <span className="text-[11px] text-steel">Already a client? Log in to Client Hub to make a request.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {[{
+                  title: 'Preventive programs',
+                  copy: 'Seasonal and annual plans calibrated to your equipment: zoned systems, condensate-sensitive furnaces, humidity-critical spaces.',
+                }, {
+                  title: 'Responsive repairs',
+                  copy: 'Service visits that prioritize safety and uptime with clear approvals before corrective work begins.',
+                }, {
+                  title: 'Response tiers',
+                  copy: 'Standard next-day included. Same-day upgrade available when capacity allows. Safety lockouts prioritized.',
+                }, {
+                  title: 'Documentation',
+                  copy: 'Condition notes after each visit, with recommendations that anticipate future phases or upgrades.',
+                }].map((card) => (
+                  <article key={card.title} className={`rounded-2xl border ${accentSoft} p-4 shadow-card`}>
+                    <p className="font-display text-base font-semibold text-canvas">{card.title}</p>
+                    <p className="mt-2 text-sm text-steel">{card.copy}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-6 rounded-3xl border border-canvas/10 bg-canvas/5 p-8 shadow-card shadow-glow/30 sm:p-10">
+            <SectionHeading eyebrow="Offerings" title="What Helix Services™ delivers" copy="Programs tuned to system type and building needs." />
+            <div className="grid gap-6 md:grid-cols-3">
+              {[{
+                title: 'Preventive maintenance programs',
+                items: ['Seasonal visits (spring/fall) for combustion and condensate-heavy systems', 'Targeted cold-weather condensate checks', 'Condition notes and next-step recommendations'],
+              }, {
+                title: 'Service visits & repairs',
+                items: ['Diagnostics with clear approvals before corrective work', 'Priority for safety lockouts and outage scenarios', 'Minor corrective work performed on approval when parts are on-hand'],
+              }, {
+                title: 'Light commercial & specialty',
+                items: ['Small offices, retail, and mixed-use buildings', 'Zoned control verification and airflow sanity checks', 'Moisture and envelope risk assessments'],
+              }].map((block) => (
+                <article key={block.title} className="rounded-2xl border border-canvas/10 bg-charcoal/70 p-5 shadow-card">
+                  <h3 className="font-display text-lg font-semibold text-canvas">{block.title}</h3>
+                  <ul className="mt-3 space-y-2 text-sm text-steel">
+                    {block.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="text-sky-300">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+            <article className="space-y-4 rounded-3xl border border-canvas/10 bg-charcoal/80 p-6 shadow-card">
+              <SectionHeading eyebrow="Response" title="Support tiers" copy="Reliability first, with upgrades when timing is critical." />
+              <div className="grid gap-4 md:grid-cols-2">
+                {[{ label: 'Included', desc: 'Next-day response for covered issues, priority scheduling for safety lockouts.' }, { label: 'Upgrade', desc: 'Same-day response when capacity allows; ideal for critical spaces or outages.' }, { label: 'Communication', desc: 'Direct contact with the tech lead; approvals captured before corrective work.' }, { label: 'Documentation', desc: 'Status indicators, notes, and recommended follow-ups after each visit.' }].map((item) => (
+                  <div key={item.label} className="rounded-xl border border-canvas/10 bg-canvas/5 p-4 text-sm text-steel">
+                    <p className="font-semibold text-canvas">{item.label}</p>
+                    <p className="mt-2">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article className="space-y-4 rounded-3xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
+              <SectionHeading eyebrow="Scope" title="What we check" copy="Example HVAC program steps for a zoned, condensate-sensitive system." />
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl border border-canvas/10 bg-charcoal/70 p-4 text-sm text-steel">
+                  <p className="font-semibold text-canvas">Fall heating service</p>
+                  <ul className="mt-2 space-y-1">
+                    <li>Thermostat and zone call logic verification</li>
+                    <li>Burner, ignition, inducer, and safety circuit checks</li>
+                    <li>Vent/condensate inspection and flush as needed</li>
+                    <li>Blower, filter, and temperature rise confirmation</li>
+                  </ul>
+                </div>
+                <div className="rounded-xl border border-canvas/10 bg-charcoal/70 p-4 text-sm text-steel">
+                  <p className="font-semibold text-canvas">Spring system service</p>
+                  <ul className="mt-2 space-y-1">
+                    <li>Zone damper operation and control board status</li>
+                    <li>Condensate pan/trap inspection post-heating season</li>
+                    <li>Cooling call readiness (Y1/Y2) where applicable</li>
+                    <li>Visual coil, line set insulation, and disconnect check</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+            <article className="rounded-3xl border border-canvas/10 bg-charcoal/70 p-6 shadow-card">
+              <SectionHeading eyebrow="Not included" title="What’s outside maintenance" />
+              <ul className="mt-3 space-y-2 text-sm text-steel">
+                <li className="flex gap-2"><span className="text-sky-300">•</span><span>Major component replacement or compressor diagnostics beyond start-and-run confirmation</span></li>
+                <li className="flex gap-2"><span className="text-sky-300">•</span><span>Refrigerant service, leak detection, or duct balancing/modifications</span></li>
+                <li className="flex gap-2"><span className="text-sky-300">•</span><span>Code upgrades unrelated to maintenance scope</span></li>
+              </ul>
+            </article>
+            <article className="rounded-3xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
+              <SectionHeading eyebrow="Why it works" title="Built for reliability" />
+              <ul className="mt-3 space-y-2 text-sm text-steel">
+                <li className="flex gap-2"><span className="text-sky-300">•</span><span>Condensate-sensitive systems get scheduled attention before failures</span></li>
+                <li className="flex gap-2"><span className="text-sky-300">•</span><span>Zoned control checks prevent small logic issues from compounding</span></li>
+                <li className="flex gap-2"><span className="text-sky-300">•</span><span>Notes after each visit keep future upgrades predictable</span></li>
+              </ul>
+            </article>
+          </section>
+
+          <section id="contact" className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-slate-900 via-slate-800 to-charcoal p-8 shadow-glow sm:p-10">
+            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="space-y-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Schedule service</p>
+                <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Tell us what needs attention</h2>
+                <p className="text-sm text-steel">
+                  This goes straight to the Helix Services™ team lead. Share the systems involved, access notes, and timing. We’ll confirm the right response tier and schedule.
+                </p>
+                <div className="flex flex-wrap gap-3 text-sm text-steel">
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">HVAC & airflow</span>
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Moisture / condensate</span>
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Plumbing / electrical</span>
+                  <span className="rounded-full border border-canvas/10 bg-canvas/5 px-3 py-2">Light commercial</span>
+                </div>
+                <div className="flex flex-col text-xs text-steel">
+                  <a
+                    href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex w-fit items-center gap-2 rounded-full border border-sky-300/30 bg-sky-300/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-canvas"
+                  >
+                    Client Hub
+                  </a>
+                  <span className="mt-1 text-[11px]">Already a client? Log in to Client Hub to make a request.</span>
+                </div>
+              </div>
+
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                action="/"
+                onSubmit={handleSubmit}
+                className="space-y-4 rounded-2xl border border-canvas/10 bg-charcoal/80 p-6 shadow-card"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="leadType" value={isServicesLead ? 'Helix Services' : 'Helix Craftworks'} />
+                <p className="hidden">
+                  <label>
+                    Don't fill this out if you're human: <input name="bot-field" />
+                  </label>
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="text-sm text-steel">
+                    Name
+                    <input
+                      required
+                      name="name"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                      placeholder="Alex Rivera"
+                    />
+                  </label>
+                  <label className="text-sm text-steel">
+                    Email
+                    <input
+                      required
+                      type="email"
+                      name="email"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                      placeholder="you@work.com"
+                    />
+                  </label>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <label className="text-sm text-steel">
+                    Location (city/town)
+                    <input
+                      name="location"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                      placeholder="Philadelphia, PA"
+                    />
+                  </label>
+                  <label className="text-sm text-steel">
+                    When do you need help?
+                    <select
+                      name="startTimeframe"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                      defaultValue="ASAP / next 30 days"
+                    >
+                      <option>ASAP / next 30 days</option>
+                      <option>1–3 months</option>
+                      <option>3–6 months</option>
+                      <option>6+ months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </label>
+                </div>
+                <label className="text-sm text-steel">
+                  Request type
+                  <select
+                    name="projectType"
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                    value={projectType}
+                    onChange={(event) => setProjectType(event.target.value)}
+                  >
+                    <option>Preventive maintenance</option>
+                    <option>Repairs / service visit</option>
+                    <option>HVAC / airflow</option>
+                    <option>Moisture / condensate</option>
+                    <option>Plumbing / electrical</option>
+                    <option>Light commercial</option>
+                    <option>Not sure yet (help me scope it)</option>
+                  </select>
+                </label>
+                {isServicesLead ? (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <label className="text-sm text-steel">
+                      System / asset type
+                      <select
+                        name="assetType"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                        defaultValue="HVAC"
+                      >
+                        <option>HVAC</option>
+                        <option>Plumbing</option>
+                        <option>Electrical</option>
+                        <option>Envelope / moisture</option>
+                        <option>Multi-trade</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel">
+                      Recurrence
+                      <select
+                        name="recurrence"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                        defaultValue="One-time service"
+                      >
+                        <option>One-time service</option>
+                        <option>Seasonal (spring/fall)</option>
+                        <option>Quarterly</option>
+                        <option>Annual</option>
+                        <option>Not sure yet</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel">
+                      Response tier
+                      <select
+                        name="responseTier"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                        defaultValue="Standard next-day"
+                      >
+                        <option>Standard next-day</option>
+                        <option>Same-day upgrade</option>
+                        <option>Flex (schedule with project)</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel">
+                      Urgency
+                      <select
+                        name="urgency"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-sky-300 focus:outline-none"
+                        defaultValue="Routine"
+                      >
+                        <option>Routine</option>
+                        <option>Urgent (48 hours)</option>
+                        <option>Outage / safety issue</option>
+                      </select>
+                    </label>
+                    <label className="text-sm text-steel sm:col-span-2">
+                      Access or site notes
+                      <input
+                        name="accessNotes"
+                        className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                        placeholder="Site contact, access hours, lockbox, roof/ladder, parking."
+                      />
+                    </label>
+                  </div>
+                ) : null}
+                <label className="text-sm text-steel">
+                  Request details
+                  <textarea
+                    required
+                    name="message"
+                    rows={4}
+                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-sky-300 focus:outline-none"
+                    placeholder="Systems involved, symptoms, timing, access notes, and any photos/links."
+                  />
+                </label>
+                <button
+                  type="submit"
+                  disabled={status === 'sending' || status === 'success'}
+                  className={`w-full rounded-full px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 ${accentButton}`}
+                >
+                  Request service
+                </button>
+                {status === 'success' ? (
+                  <output className="rounded-lg border border-sky-300/30 bg-sky-300/10 px-3 py-2 text-sm text-canvas" aria-live="polite">
+                    Thanks for reaching out. We will reply within one business day.
+                  </output>
+                ) : null}
+                {status === 'error' ? (
+                  <div className="rounded-lg border border-redwood/40 bg-redwood/10 px-3 py-2 text-sm text-redwood" role="alert" aria-live="assertive">
+                    {errorMessage || 'Something went wrong. Please try again.'}
+                  </div>
+                ) : null}
+                <p className="text-xs text-steel">
+                  By submitting, you agree to let us contact you about this request. We keep conversations confidential.
+                </p>
+              </form>
+            </div>
+          </section>
+        </main>
+        <Footer year={year} />
+      </Shell>
+    );
+  }
 
   if (standalonePage) {
     return (
@@ -493,7 +1277,9 @@ export default function App() {
 
       if (response.ok || (response.status >= 300 && response.status < 400)) {
         setStatus('success');
-        setProjectType(DEFAULT_PROJECT_TYPE);
+        setProjectType(path === '/helix-services' ? 'Preventive maintenance' : DEFAULT_PROJECT_TYPE);
+        setBudgetChoice('$10k–$25k');
+        setCustomBudget('');
         form.reset();
       } else {
         setStatus('error');
@@ -514,8 +1300,6 @@ export default function App() {
     setSnapshotIndex((prev) => (prev + 1) % deliverySnapshots.length);
   }
 
-  const isServicesLead = projectType === 'Preventive maintenance' || projectType === 'Repairs / service visit';
-
   return (
     <div className="min-h-screen bg-charcoal text-canvas">
       <div className="absolute inset-0 -z-10 bg-radial-spot" aria-hidden />
@@ -533,11 +1317,18 @@ export default function App() {
           </a>
           <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
             <a href="#services">Services</a>
-            <a href="/helix-services">Helix Services</a>
             <a href="#process">Process</a>
             <a href="/careers">Careers</a>
             <a href="#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
               Request a consult
+            </a>
+            <a
+              href="https://clienthub.getjobber.com/client_hubs/051c9a8d-bb77-4488-a617-8f5d82fe8a39/login/new?source=share_login"
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-sky-300/30 bg-sky-300/10 px-4 py-2 text-sm font-semibold text-canvas shadow-glow/40 transition hover:-translate-y-0.5"
+            >
+              Client Hub
             </a>
           </nav>
         </header>
@@ -582,14 +1373,7 @@ export default function App() {
                 <p className="text-sm text-steel">{currentSnapshot.description}</p>
                 <Divider />
                 <div className="grid gap-4 sm:grid-cols-2">
-                  {currentSnapshot.stats.map((item) => (
-                    <div key={`${currentSnapshot.title}-${item.label}`} className="rounded-xl border border-canvas/10 bg-charcoal/60 p-4 shadow-glow/30">
-                      <p className="text-2xl font-semibold text-canvas">
-                        <span className="text-redwood">{item.value}</span>
-                      </p>
-                      <p className="mt-2 text-sm text-steel">{item.label}</p>
-                    </div>
-                  ))}
+                  <SnapshotStats snapshot={currentSnapshot} />
                 </div>
                 <div className="flex items-center justify-between pt-2">
                   <div className="text-xs uppercase tracking-[0.18em] text-steel">
@@ -625,16 +1409,7 @@ export default function App() {
               copy="General contracting defined by clear sequencing, accountable budgets, and finish-driven delivery."
             />
             <div className="grid gap-6 md:grid-cols-3">
-              {services.map((service) => (
-                <article key={service.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card shadow-glow/40">
-                  <h3 className="font-display text-lg font-semibold text-canvas">{service.title}</h3>
-                  <p className="mt-3 text-sm text-steel">{service.copy}</p>
-                  <a href={service.href} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-redwood">
-                    <span>Explore</span>
-                    <span aria-hidden>→</span>
-                  </a>
-                </article>
-              ))}
+              <ServicesCards />
             </div>
           </section>
 
@@ -672,16 +1447,7 @@ export default function App() {
               copy="Clean job sites, clear updates, and work that holds up every time you open the door."
             />
             <div className="grid gap-6 md:grid-cols-3">
-              {steps.map((step) => (
-                <article key={step.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-5 shadow-card">
-                  <div className="flex items-center justify-between text-sm text-steel">
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em]">{step.label}</span>
-                    <span className="h-[1px] flex-1 bg-canvas/10" aria-hidden />
-                  </div>
-                  <h3 className="mt-4 font-display text-lg font-semibold text-canvas">{step.title}</h3>
-                  <p className="mt-2 text-sm text-steel">{step.copy}</p>
-                </article>
-              ))}
+              <StepCards />
             </div>
             <p className="text-sm text-steel">No rushed decisions. No loose ends.</p>
           </section>
@@ -857,20 +1623,41 @@ export default function App() {
                     </label>
                   </div>
                 ) : null}
-                <label className="text-sm text-steel">
-                  Budget range
-                  <select
-                    name="budget"
-                    className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
-                    defaultValue="$10k–$25k"
-                  >
-                    <option>$10k–$25k</option>
-                    <option>$25k–$50k</option>
-                    <option>$50k–$100k</option>
-                    <option>$100k+</option>
-                    <option>Not sure yet</option>
-                  </select>
-                </label>
+                {isServicesLead ? null : (
+                  <label className="text-sm text-steel">
+                    Budget range
+                    <select
+                      name="budget"
+                      className="mt-2 w-full rounded-lg border border-canvas/10 bg-charcoal/80 px-3 py-2 text-canvas focus:border-redwood focus:outline-none"
+                      value={budgetChoice}
+                      onChange={(event) => {
+                        const value = event.target.value;
+                        setBudgetChoice(value);
+                        if (value !== 'Custom') {
+                          setCustomBudget('');
+                        }
+                      }}
+                    >
+                      <option>{'< $5,000'}</option>
+                      <option>$5,000–$10,000</option>
+                      <option>$10k–$25k</option>
+                      <option>$25k–$50k</option>
+                      <option>$50k–$100k</option>
+                      <option>$100k+</option>
+                      <option>Custom</option>
+                      <option>Not sure yet</option>
+                    </select>
+                    {budgetChoice === 'Custom' ? (
+                      <input
+                        name="customBudget"
+                        value={customBudget}
+                        onChange={(event) => setCustomBudget(event.target.value)}
+                        className="mt-3 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
+                        placeholder="Enter your budget (e.g., $15,000)"
+                      />
+                    ) : null}
+                  </label>
+                )}
                 <label className="text-sm text-steel">
                   Project context
                   <textarea
@@ -935,12 +1722,7 @@ export default function App() {
           <section className="space-y-6">
             <SectionHeading eyebrow="FAQ" title="Answers in one place" copy="Quick notes on timelines, scope, and collaboration." />
             <div className="grid gap-4 md:grid-cols-3">
-              {faqs.map((item) => (
-                <article key={item.q} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-5 shadow-card">
-                  <h3 className="font-display text-base font-semibold text-canvas">{item.q}</h3>
-                  <p className="mt-2 text-sm text-steel">{item.a}</p>
-                </article>
-              ))}
+              <FaqItems />
             </div>
           </section>
         </main>
@@ -955,18 +1737,21 @@ export default function App() {
             </div>
             <div className="flex flex-wrap gap-4 text-steel">
               <a href="#services">Services</a>
-              <a href="/helix-services">Helix Services</a>
               <a href="#process">Process</a>
               <a href="/careers">Careers</a>
               <a href="#contact">Request a consult</a>
             </div>
           </div>
-          <div className="flex flex-col items-start gap-1 sm:items-end">
-            <div className="flex flex-col leading-tight text-right sm:text-right">
+          <div className="flex flex-col items-start gap-3 sm:items-end sm:text-right">
+            <div className="flex flex-col leading-tight">
               <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
-                Loom & Lathe
+                Loom & Lathe™
               </a>
               <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
+            </div>
+            <div className="flex flex-col leading-tight">
+              <a href="/helix-services" className="text-canvas">Helix Services™</a>
+              <span className="text-xs text-steel">Preventive maintenance and repairs, delivered by Helix</span>
             </div>
             <div className="flex flex-wrap gap-4 text-steel">
               <a href="/terms">Terms</a>
