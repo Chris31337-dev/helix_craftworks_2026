@@ -3,8 +3,8 @@ import headerLogo from '../Assets/Asset 25@1.5x.webp';
 import CareersPage from './pages/Careers';
 
 const BRAND = 'Helix Craftworks';
-const BRAND_MARK = `${BRAND}┬«`;
-const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}┬«`;
+const BRAND_MARK = `${BRAND} (TM)`;
+const BRAND_MARK_UPPER = `${BRAND.toUpperCase()} (TM)`;
 const HEADER_LOGO_SRC = headerLogo;
 const DEFAULT_PROJECT_TYPE = 'Kitchen renovation';
  
@@ -46,11 +46,6 @@ const services = [
     copy: 'Targeted improvements and phased renovations planned to integrate cleanly with future work and long-term goals.',
     href: '/repairs-upgrades',
   },
-  {
-    title: 'Helix ServicesΓäó (Maintenance & Repairs)',
-    copy: 'Preventive maintenance and responsive repairs delivered by Helix ServicesΓäó to keep systems reliable and downtime low.',
-    href: '/helix-services',
-  },
 ];
 
 const steps = [
@@ -87,7 +82,7 @@ const deliverySnapshots = [
     tag: 'Decisions made early. Fewer surprises later.',
     description: 'Layouts, materials, and details are locked before work begins so installs move cleanly and predictably.',
     stats: [
-      { value: '2ΓÇô4 wks', label: 'Typical planning window before site start' },
+      { value: '2-4 wks', label: 'Typical planning window before site start' },
       { value: '100%', label: 'Material selections approved pre-demo' },
       { value: '1', label: 'Coordinated plan across trades' },
     ],
@@ -137,7 +132,7 @@ const deliverySnapshots = [
     tag: 'Work that earns repeat calls',
     description: 'Many clients return for additional rooms or future projects after the first renovation is complete.',
     stats: [
-      { value: '5Γ¡É', label: 'Average client rating' },
+      { value: '5/5', label: 'Average client rating' },
       { value: 'Repeat clients', label: 'Drive most new work' },
       { value: 'Next-phase ready', label: 'Projects planned with longevity in mind' },
     ],
@@ -199,7 +194,7 @@ function ServicesCards() {
           <p className="mt-3 text-sm text-steel">{service.copy}</p>
           <a href={service.href} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-redwood">
             <span>Explore</span>
-            <span aria-hidden>ΓåÆ</span>
+            <span aria-hidden>{'>'}</span>
           </a>
         </article>
       ))}
@@ -303,18 +298,18 @@ function Footer({ year }: Readonly<{ year: number }>) {
       <div className="flex flex-col items-start gap-3 sm:items-end sm:text-right">
         <div className="flex flex-col leading-tight">
           <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
-            Loom & LatheΓäó
+            Loom & Lathe (TM)
           </a>
           <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
         </div>
         <div className="flex flex-col leading-tight">
-          <a href="/helix-services" className="text-canvas">Helix ServicesΓäó</a>
+          <a href="/helix-services" className="text-canvas">Helix Services (TM)</a>
           <span className="text-xs text-steel">Preventive maintenance and repairs, delivered by Helix</span>
         </div>
         <div className="flex gap-4 text-steel">
           <a href="/terms">Terms</a>
           <a href="/privacy">Privacy</a>
-          <span>┬⌐ {year}</span>
+          <span>(c) {year}</span>
         </div>
       </div>
     </footer>
@@ -642,7 +637,7 @@ export default function App() {
                   <ul className="mt-3 space-y-2 text-sm text-steel">
                     {section.items.map((item) => (
                       <li key={item} className="flex gap-2">
-                        <span className="text-redwood">ΓÇó</span>
+                        <span className="text-redwood">-</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -810,7 +805,7 @@ export default function App() {
                       className="flex h-9 w-9 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 text-canvas transition hover:-translate-y-0.5"
                       aria-label="Previous snapshot"
                     >
-                      ΓåÉ
+                      {'<'}
                     </button>
                     <button
                       type="button"
@@ -818,7 +813,7 @@ export default function App() {
                       className="flex h-9 w-9 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 text-canvas transition hover:-translate-y-0.5"
                       aria-label="Next snapshot"
                     >
-                      ΓåÆ
+                      {'>'}
                     </button>
                   </div>
                 </div>
@@ -886,15 +881,15 @@ export default function App() {
                 </p>
                 <ul className="grid gap-3 text-sm text-steel">
                   <li className="flex items-center gap-2">
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">Γ£ô</span>
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">-</span>
                     Renovations, remodels, and finish-driven improvements
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">Γ£ô</span>
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">-</span>
                     Clear scope, clean sequencing, and steady updates
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">Γ£ô</span>
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">-</span>
                     Veteran-owned. Detail-forward execution.
                   </li>
                 </ul>
@@ -934,7 +929,7 @@ export default function App() {
                       required
                       name="name"
                       className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
-                      placeholder="Alex Rivera"
+                      placeholder="Gene Gear"
                     />
                   </label>
                   <label className="text-sm text-steel">
@@ -944,7 +939,7 @@ export default function App() {
                       type="email"
                       name="email"
                       className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
-                      placeholder="you@home.com"
+                      placeholder="me@helix.com"
                     />
                   </label>
                 </div>
@@ -954,7 +949,7 @@ export default function App() {
                     <input
                       name="location"
                       className="mt-2 w-full rounded-lg border border-canvas/10 bg-canvas/5 px-3 py-2 text-canvas placeholder:text-steel/60 focus:border-redwood focus:outline-none"
-                      placeholder="Philadelphia, PA"
+                      placeholder="York, PA"
                     />
                   </label>
                   <label className="text-sm text-steel">
@@ -965,8 +960,8 @@ export default function App() {
                       defaultValue="ASAP / next 30 days"
                     >
                       <option>ASAP / next 30 days</option>
-                      <option>1ΓÇô3 months</option>
-                      <option>3ΓÇô6 months</option>
+                      <option>1-3 months</option>
+                      <option>3-6 months</option>
                       <option>6+ months</option>
                       <option>Not sure yet</option>
                     </select>
@@ -1074,10 +1069,10 @@ export default function App() {
                       }}
                     >
                       <option>{'< $5,000'}</option>
-                      <option>$5,000ΓÇô$10,000</option>
-                      <option>$10kΓÇô$25k</option>
-                      <option>$25kΓÇô$50k</option>
-                      <option>$50kΓÇô$100k</option>
+                      <option>$5,000-10,000</option>
+                      <option>$10k-25k</option>
+                      <option>$25k-50k</option>
+                      <option>$50k-100k</option>
                       <option>$100k+</option>
                       <option>Custom</option>
                       <option>Not sure yet</option>
@@ -1146,9 +1141,9 @@ export default function App() {
                 <h3 className="font-display text-lg font-semibold text-canvas">Helix Craftworks vs. Helix Services</h3>
                 <p className="mt-2 text-xs text-steel">Project builds stay with Helix Craftworks. Preventive maintenance and repairs run through Helix Services.</p>
                 <ul className="mt-3 space-y-2 text-sm text-steel">
-                  <li className="flex gap-2"><span className="text-redwood">ΓÇó</span><span>Helix Craftworks: renovations, remodels, sequencing, finish work.</span></li>
-                  <li className="flex gap-2"><span className="text-redwood">ΓÇó</span><span>Helix Services: preventive maintenance plans and service visits.</span></li>
-                  <li className="flex gap-2"><span className="text-redwood">ΓÇó</span><span>Same leadership, tailored workflows for each type of request.</span></li>
+                  <li className="flex gap-2"><span className="text-redwood">-</span><span>Helix Craftworks: renovations, remodels, sequencing, finish work.</span></li>
+                  <li className="flex gap-2"><span className="text-redwood">-</span><span>Helix Services: preventive maintenance plans and service visits.</span></li>
+                  <li className="flex gap-2"><span className="text-redwood">-</span><span>Same leadership, tailored workflows for each type of request.</span></li>
                 </ul>
               </article>
             </div>
@@ -1180,18 +1175,18 @@ export default function App() {
           <div className="flex flex-col items-start gap-3 sm:items-end sm:text-right">
             <div className="flex flex-col leading-tight">
               <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
-                Loom & LatheΓäó
+                Loom & Lathe (TM)
               </a>
               <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
             </div>
             <div className="flex flex-col leading-tight">
-              <a href="/helix-services" className="text-canvas">Helix ServicesΓäó</a>
+              <a href="/helix-services" className="text-canvas">Helix Services (TM)</a>
               <span className="text-xs text-steel">Preventive maintenance and repairs, delivered by Helix</span>
             </div>
             <div className="flex flex-wrap gap-4 text-steel">
               <a href="/terms">Terms</a>
               <a href="/privacy">Privacy</a>
-              <span>┬⌐ {year}</span>
+              <span>(c) {year}</span>
             </div>
           </div>
         </footer>
