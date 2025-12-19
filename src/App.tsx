@@ -510,14 +510,23 @@ export default function App() {
             <SectionHeading eyebrow="Systems" title="What we care for" copy="Coverage focused on the systems that run the space." />
             <div className="grid gap-6 md:grid-cols-3">
               {[{
-                title: 'HVAC and airflow',
-                items: ['Zoned controls and dampers', 'Condensate management and venting', 'Combustion safety checks'],
+                title: 'HVAC Preventive Maintenance and Zoning Systems',
+                items: ['Seasonal readiness for heating and cooling', 'Zoned controls and damper checks', 'Condensate routes inspected and cleared'],
               }, {
-                title: 'Moisture and envelope',
-                items: ['Basement and crawlspace monitoring', 'Humidity and drainage sanity checks', 'Envelope risk observations'],
+                title: 'Mechanical Systems Oversight',
+                items: ['Fans, pumps, and venting observations', 'Equipment condition and access notes', 'Safety and clearance checks where accessible'],
               }, {
-                title: 'Plumbing and electrical',
-                items: ['Fixture and supply inspections', 'Panel labeling sanity checks', 'Light commercial suites and small offices'],
+                title: 'Electrical and Control Inspections',
+                items: ['Panel label sanity checks', 'Disconnects and safety observations', 'Low-voltage and control board status review'],
+              }, {
+                title: 'Preventive Maintenance for Helix-Built or Modified Work',
+                items: ['Scopes aligned to installed systems', 'Finish protection and access documented', 'Recommendations tied to the original build plan'],
+              }, {
+                title: 'Facilities Documentation and System Records',
+                items: ['Visit notes and photos stored', 'Access details retained for future visits', 'Recommendations tracked for next steps'],
+              }, {
+                title: 'Priority Response and On-Call Support',
+                items: ['Scheduling based on safety and capacity', 'Upgrade path for faster response when available', 'Direct contact path with the service lead'],
               }].map((block) => (
                 <article key={block.title} className="rounded-2xl border border-canvas/10 bg-charcoal/70 p-5 shadow-card">
                   <h3 className="font-display text-lg font-semibold text-canvas">{block.title}</h3>
