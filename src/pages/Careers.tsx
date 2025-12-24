@@ -23,7 +23,11 @@ function Divider() {
   return <div className="h-px w-full bg-canvas/10" />;
 }
 
-function SectionHeading({ title, eyebrow, copy }: Readonly<{ title: string; eyebrow: string; copy?: string }>) {
+function SectionHeading({
+  title,
+  eyebrow,
+  copy,
+}: Readonly<{ title: string; eyebrow: string; copy?: string }>) {
   return (
     <div className="space-y-3">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">{eyebrow}</p>
@@ -39,8 +43,13 @@ function Shell({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <div className="min-h-screen bg-charcoal text-canvas">
       <div className="absolute inset-0 -z-10 bg-radial-spot" aria-hidden />
-      <div className="absolute inset-0 -z-20 opacity-25 bg-grid-light bg-[length:140px_140px]" aria-hidden />
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pb-16 pt-10 sm:px-10 sm:pt-14 lg:px-14">{children}</div>
+      <div
+        className="absolute inset-0 -z-20 opacity-25 bg-grid-light bg-[length:140px_140px]"
+        aria-hidden
+      />
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pb-16 pt-10 sm:px-10 sm:pt-14 lg:px-14">
+        {children}
+      </div>
     </div>
   );
 }
@@ -50,18 +59,27 @@ function Header() {
     <header className="flex items-center justify-between">
       <a href="/#top" className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5 shadow-glow">
-          <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-8 w-8 object-contain" />
+          <img
+            src={HEADER_LOGO_SRC}
+            alt={`${BRAND_MARK} logo`}
+            className="h-8 w-8 object-contain"
+          />
         </div>
         <div>
           <p className="font-display text-sm font-semibold text-canvas">{BRAND_MARK_UPPER}</p>
-          <p className="text-xs text-steel">Custom Renovations. Visible craftsmanship. Built by {BRAND_MARK}.</p>
+          <p className="text-xs text-steel">
+            Custom Renovations. Visible craftsmanship. Built by {BRAND_MARK}.
+          </p>
         </div>
       </a>
       <nav className="hidden items-center gap-6 text-sm text-steel sm:flex">
         <a href="/#services">Services</a>
         <a href="/#process">Process</a>
         <a href="/careers">Careers</a>
-        <a href="/#contact" className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5">
+        <a
+          href="/#contact"
+          className="rounded-full bg-redwood px-4 py-2 text-canvas shadow-glow transition hover:-translate-y-0.5"
+        >
           Request a consult
         </a>
       </nav>
@@ -74,7 +92,11 @@ function Footer({ year }: Readonly<{ year: number }>) {
     <footer className="mt-16 flex flex-col gap-4 border-t border-canvas/10 pt-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-2 text-canvas">
         <div className="flex h-8 w-8 items-center justify-center rounded-full border border-canvas/10 bg-canvas/5">
-          <img src={HEADER_LOGO_SRC} alt={`${BRAND_MARK} logo`} className="h-6 w-6 object-contain" />
+          <img
+            src={HEADER_LOGO_SRC}
+            alt={`${BRAND_MARK} logo`}
+            className="h-6 w-6 object-contain"
+          />
         </div>
         <span>{BRAND_MARK}</span>
       </div>
@@ -84,10 +106,17 @@ function Footer({ year }: Readonly<{ year: number }>) {
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>
         <div className="flex flex-col leading-tight">
-          <a href="https://store.helixcraftworks.com" target="_blank" rel="noreferrer" className="text-canvas">
+          <a
+            href="https://store.helixcraftworks.com"
+            target="_blank"
+            rel="noreferrer"
+            className="text-canvas"
+          >
             Loom & Lathe
           </a>
-          <span className="text-xs text-steel">Apparel and small-batch goods from Helix Craftworks</span>
+          <span className="text-xs text-steel">
+            Apparel and small-batch goods from Helix Craftworks
+          </span>
         </div>
         <span className="text-steel">© {year}</span>
       </div>
@@ -98,29 +127,57 @@ function Footer({ year }: Readonly<{ year: number }>) {
 const valueCards: ValueCard[] = [
   {
     title: 'What we value',
-    bullets: ['Respect for the trade, the client, and the home', 'Clear communication and follow-through', 'Attention to detail at every stage of the build', 'Clean job sites and steady progress'],
+    bullets: [
+      'Respect for the trade, the client, and the home',
+      'Clear communication and follow-through',
+      'Attention to detail at every stage of the build',
+      'Clean job sites and steady progress',
+    ],
   },
   {
     title: 'What you can expect',
-    bullets: ['Work planned and sequenced so the job runs cleanly', 'Standards that stay consistent from start to close-out', 'A team that takes pride in finish quality and professionalism', 'Room to grow through real responsibility, not chaos'],
+    bullets: [
+      'Work planned and sequenced so the job runs cleanly',
+      'Standards that stay consistent from start to close-out',
+      'A team that takes pride in finish quality and professionalism',
+      'Room to grow through real responsibility, not chaos',
+    ],
   },
 ];
 
 const positions: Position[] = [
   {
     title: 'Lead Craftsman / Project Manager',
-    summary: 'Own jobsite execution and client communication. Drive schedule, sequencing, and finish quality from start to close-out.',
-    bullets: ['Lead on-site work and coordinate trades', 'Maintain scope, schedule, and quality standards', 'Communicate daily/weekly updates to clients', 'Solve field issues with a calm, disciplined approach'],
+    summary:
+      'Own jobsite execution and client communication. Drive schedule, sequencing, and finish quality from start to close-out.',
+    bullets: [
+      'Lead on-site work and coordinate trades',
+      'Maintain scope, schedule, and quality standards',
+      'Communicate daily/weekly updates to clients',
+      'Solve field issues with a calm, disciplined approach',
+    ],
   },
   {
     title: 'Finish-Forward Carpenter',
-    summary: 'Skilled field carpenter focused on framing, trim, and renovation details that close cleanly.',
-    bullets: ['Framing, trim, millwork installs, punch-list completion', 'Reads plans, checks dimensions, maintains alignment and fit', 'Works cleanly in occupied homes (dust control and protection)', 'Helps maintain jobsite order and daily resets'],
+    summary:
+      'Skilled field carpenter focused on framing, trim, and renovation details that close cleanly.',
+    bullets: [
+      'Framing, trim, millwork installs, punch-list completion',
+      'Reads plans, checks dimensions, maintains alignment and fit',
+      'Works cleanly in occupied homes (dust control and protection)',
+      'Helps maintain jobsite order and daily resets',
+    ],
   },
   {
     title: 'Field Construction Technician I',
-    summary: 'Entry-level role supporting renovation work, material handling, site protection, and daily jobsite flow.',
-    bullets: ['Demo support, cleanup, material staging, basic tool use', 'Site protection (floors, paths, dust barriers) and daily reset', 'Learns processes, follows direction, shows up ready', 'Growth path into skilled carpentry over time'],
+    summary:
+      'Entry-level role supporting renovation work, material handling, site protection, and daily jobsite flow.',
+    bullets: [
+      'Demo support, cleanup, material staging, basic tool use',
+      'Site protection (floors, paths, dust barriers) and daily reset',
+      'Learns processes, follows direction, shows up ready',
+      'Growth path into skilled carpentry over time',
+    ],
   },
 ];
 
@@ -148,7 +205,9 @@ export default function CareersPage() {
         form.reset();
       } else {
         setStatus('error');
-        setErrorMessage(`Something went wrong. Status ${response.status}. Please try again or email careers@helixcraftworks.com.`);
+        setErrorMessage(
+          `Something went wrong. Status ${response.status}. Please try again or email careers@helixcraftworks.com.`
+        );
       }
     } catch (error) {
       console.error(error);
@@ -164,9 +223,13 @@ export default function CareersPage() {
         <section className="grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">CAREERS</p>
-            <h1 className="font-display text-3xl font-semibold leading-tight text-canvas sm:text-4xl lg:text-5xl">Build work you’re proud to put your name on.</h1>
+            <h1 className="font-display text-3xl font-semibold leading-tight text-canvas sm:text-4xl lg:text-5xl">
+              Build work you’re proud to put your name on.
+            </h1>
             <p className="max-w-2xl text-sm text-steel sm:text-base">
-              We’re a veteran-owned residential general contractor focused on disciplined planning, clean execution, and finish quality. If you care about doing things right, you’ll fit in here.
+              We’re a veteran-owned residential general contractor focused on disciplined planning,
+              clean execution, and finish quality. If you care about doing things right, you’ll fit
+              in here.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <a
@@ -175,7 +238,9 @@ export default function CareersPage() {
               >
                 Apply now
               </a>
-              <p className="text-xs text-steel">Pennsylvania-based. Travel considered case-by-case.</p>
+              <p className="text-xs text-steel">
+                Pennsylvania-based. Travel considered case-by-case.
+              </p>
             </div>
           </div>
           <div className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card shadow-glow/30">
@@ -208,7 +273,10 @@ export default function CareersPage() {
           />
           <div className="grid gap-4 md:grid-cols-2">
             {valueCards.map((card) => (
-              <article key={card.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
+              <article
+                key={card.title}
+                className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card"
+              >
                 <h3 className="font-display text-lg font-semibold text-canvas">{card.title}</h3>
                 <ul className="mt-3 space-y-2 text-sm text-steel">
                   {card.bullets.map((item) => (
@@ -221,17 +289,25 @@ export default function CareersPage() {
               </article>
             ))}
           </div>
-          <p className="text-sm text-steel">We don’t rush work, and we don’t cut corners. We build methodically and expect the same from our team.</p>
+          <p className="text-sm text-steel">
+            We don’t rush work, and we don’t cut corners. We build methodically and expect the same
+            from our team.
+          </p>
         </section>
 
         <section className="space-y-6">
           <SectionHeading eyebrow="Open roles" title="Open positions" />
           <div className="space-y-4">
             {positions.map((role) => (
-              <article key={role.title} className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card">
+              <article
+                key={role.title}
+                className="rounded-2xl border border-canvas/10 bg-canvas/5 p-6 shadow-card"
+              >
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
                   <h3 className="font-display text-xl font-semibold text-canvas">{role.title}</h3>
-                  <p className="text-xs uppercase tracking-[0.18em] text-redwood">Finish-driven construction</p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-redwood">
+                    Finish-driven construction
+                  </p>
                 </div>
                 <p className="mt-3 text-sm text-steel">{role.summary}</p>
                 <ul className="mt-4 space-y-2 text-sm text-steel">
@@ -248,24 +324,39 @@ export default function CareersPage() {
           <p className="text-sm text-steel">Experience matters. Attitude matters more.</p>
         </section>
 
-        <section id="apply" className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-canvas/5 via-redwood/10 to-charcoal p-8 shadow-glow sm:p-10">
+        <section
+          id="apply"
+          className="rounded-3xl border border-canvas/10 bg-gradient-to-br from-canvas/5 via-redwood/10 to-charcoal p-8 shadow-glow sm:p-10"
+        >
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-5">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-steel">Apply</p>
-              <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">Apply to Helix Craftworks</h2>
-              <p className="text-sm text-steel">Send the basics and a resume. We’ll reply if it’s a fit.</p>
-              <p className="text-xs text-steel">Resume uploads: PDF preferred. Keep files under 8 MB.</p>
+              <h2 className="font-display text-3xl font-semibold text-canvas sm:text-4xl">
+                Apply to Helix Craftworks
+              </h2>
+              <p className="text-sm text-steel">
+                Send the basics and a resume. We’ll reply if it’s a fit.
+              </p>
+              <p className="text-xs text-steel">
+                Resume uploads: PDF preferred. Keep files under 8 MB.
+              </p>
               <ul className="grid gap-3 text-sm text-steel">
                 <li className="flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">
+                    ✓
+                  </span>
                   Roles from entry-level to lead, focused on finish-forward renovations
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">
+                    ✓
+                  </span>
                   Calm, disciplined job sites with steady communication
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">✓</span>
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-canvas/10 text-xs text-redwood">
+                    ✓
+                  </span>
                   Growth through responsibility and consistent standards
                 </li>
               </ul>
@@ -416,9 +507,24 @@ export default function CareersPage() {
               <div className="space-y-2">
                 <p className="text-sm font-semibold text-canvas">Primary skills</p>
                 <div className="grid gap-2 sm:grid-cols-2">
-                  {["Demo", "Framing", "Drywall / finishing", "Trim / finish carpentry", "Cabinet / built-in install", "Tile / bath work", "Painting", "Light electrical", "Light plumbing"].map((skill) => (
+                  {[
+                    'Demo',
+                    'Framing',
+                    'Drywall / finishing',
+                    'Trim / finish carpentry',
+                    'Cabinet / built-in install',
+                    'Tile / bath work',
+                    'Painting',
+                    'Light electrical',
+                    'Light plumbing',
+                  ].map((skill) => (
                     <label key={skill} className="flex items-center gap-2 text-sm text-steel">
-                      <input type="checkbox" name="skills" value={skill} className="h-4 w-4 rounded border-canvas/10 bg-canvas/5 text-redwood focus:ring-redwood" />
+                      <input
+                        type="checkbox"
+                        name="skills"
+                        value={skill}
+                        className="h-4 w-4 rounded border-canvas/10 bg-canvas/5 text-redwood focus:ring-redwood"
+                      />
                       <span>{skill}</span>
                     </label>
                   ))}
@@ -474,16 +580,26 @@ export default function CareersPage() {
                 Submit application
               </button>
               {status === 'success' ? (
-                <output className="rounded-lg border border-redwood/30 bg-redwood/10 px-3 py-2 text-sm text-canvas" aria-live="polite">
+                <output
+                  className="rounded-lg border border-redwood/30 bg-redwood/10 px-3 py-2 text-sm text-canvas"
+                  aria-live="polite"
+                >
                   Application received. If it’s a fit, we’ll reach out.
                 </output>
               ) : null}
               {status === 'error' ? (
-                <div className="rounded-lg border border-redwood/40 bg-redwood/10 px-3 py-2 text-sm text-redwood" role="alert" aria-live="assertive">
+                <div
+                  className="rounded-lg border border-redwood/40 bg-redwood/10 px-3 py-2 text-sm text-redwood"
+                  role="alert"
+                  aria-live="assertive"
+                >
                   {errorMessage || 'Something went wrong. Please try again.'}
                 </div>
               ) : null}
-              <p className="text-xs text-steel">By submitting, you agree to let us contact you about this application. We keep conversations confidential.</p>
+              <p className="text-xs text-steel">
+                By submitting, you agree to let us contact you about this application. We keep
+                conversations confidential.
+              </p>
             </form>
           </div>
         </section>
