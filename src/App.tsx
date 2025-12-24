@@ -3,8 +3,8 @@ import headerLogo from '../Assets/Asset 25@1.5x.webp';
 import CareersPage from './pages/Careers';
 
 const BRAND = 'Helix Craftworks';
-const BRAND_MARK = `${BRAND} (TM)`;
-const BRAND_MARK_UPPER = `${BRAND.toUpperCase()} (TM)`;
+const BRAND_MARK = `${BRAND}®`;
+const BRAND_MARK_UPPER = `${BRAND.toUpperCase()}®`;
 const HEADER_LOGO_SRC = headerLogo;
 const DEFAULT_PROJECT_TYPE = 'Kitchen renovation';
 
@@ -344,7 +344,7 @@ function Footer({ year }: Readonly<{ year: number }>) {
             rel="noreferrer"
             className="text-canvas"
           >
-            Loom & Lathe (TM)
+            Loom & Lathe®
           </a>
           <span className="text-xs text-steel">
             Apparel and small-batch goods from Helix Craftworks
@@ -352,7 +352,7 @@ function Footer({ year }: Readonly<{ year: number }>) {
         </div>
         <div className="flex flex-col leading-tight">
           <a href="/helix-services" className="text-canvas">
-            Helix Services (TM)
+            Helix Services®
           </a>
           <span className="text-xs text-steel">
             Preventive maintenance and repairs, delivered by Helix
@@ -1547,7 +1547,7 @@ export default function App() {
                 rel="noreferrer"
                 className="text-canvas"
               >
-                Loom & Lathe (TM)
+                Loom & Lathe®
               </a>
               <span className="text-xs text-steel">
                 Apparel and small-batch goods from Helix Craftworks
@@ -1555,7 +1555,7 @@ export default function App() {
             </div>
             <div className="flex flex-col leading-tight">
               <a href="/helix-services" className="text-canvas">
-                Helix Services (TM)
+                Helix Services®
               </a>
               <span className="text-xs text-steel">
                 Preventive maintenance and repairs, delivered by Helix
